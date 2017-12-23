@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Sacramento');
+@import "../base/settings";
+
+
+#navbarColor03 {
+  width: 100%!important;
+  display: flex!important;
+  justify-content: center;
+}
+
+
+
+.navbar-brand {
+  font-family: 'Indie Flower', cursive;
+  text-transform: none;
+  font-size: $l-size;
+  position: absolute;
+  top:20%;
+  left:2%;
+}
+
+@media (max-width: $laptop_breakpoint) {
+  .navbar-brand {
+    display: none;
+  }
+  .nav-item {
+    margin-left: 0!important;
+  }
+}

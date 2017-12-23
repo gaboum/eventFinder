@@ -1,0 +1,74 @@
+@import "../base/settings";
+
+.dishItem {
+  flex: 0 1 31.33%;
+  border: $grey-border;
+  margin-bottom: 50px;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dishItem__img {
+  width: 100%;
+}
+
+.dishItem__cropper {
+  width: 100%;
+  height: 20vh;
+  overflow: hidden;
+}
+
+.dishItem__content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dishItem__description {
+  padding: 10px;
+  text-align: justify;
+}
+
+.dishItem__add-btn {
+
+}
+.dishItem__buttonHolder {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.dishItem__amount {
+  margin-top: auto;
+}
+
+.dishItem__title {
+  margin-top: 20px;
+}
+
+@media (min-width: $mobiles_breakpoint) and (max-width: $tablet_breakpoint) {
+  .dishitem__removeone {
+    padding: 12px 22px;
+    color:red;
+  }
+  .dishitem__removeall {
+    padding: 12px 15px;
+  }
+  .dishItem__cropper {
+    height: 10vh!important;
+  }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: landscape)
+and (-webkit-min-device-pixel-ratio: 1) {
+  .dishItem__cropper {
+    height: 20vh!important;
+  }
+}
+
