@@ -9,20 +9,18 @@ import ENVIRONMENT from '../../ENV';
 const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
 
 
-export const getEvents = () => {
-    return dispatch => {
-        axios.get(`https://www.eventbriteapi.com/v3/users/m/`,
-            {headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}}
-            )
-            .then(response => {
-                dispatch(setError('OKejsdkl'))
-                console.warn(response);
-            })
-            .catch(error => {
-                console.warn(error.response.data);
-                dispatch(setError(error.response.data.error_description));
-            });
-    }
+export const getEvents = () => dispatch => {
+    axios.get(`https://www.eventbriteapi.com/v3/users/me/`,
+        {headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}}
+    )
+        .then(response => {
+            dispatch(setError('OKejsdkl'));
+            console.warn(response);
+        })
+        .catch(error => {
+            console.warn(error.response.data);
+            dispatch(setError(error.response.data.error_description));
+        });
 };
 
 
