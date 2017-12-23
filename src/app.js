@@ -8,8 +8,6 @@ import 'normalize.css/normalize.css';
 import 'antd/dist/antd.css';
 
 const store = ConfigureStore();
-import moment from 'moment';
-console.log( moment().add(1, 'week').startOf('isoWeek').format('YYYY-MM-DD HH:mm:ss'));
 
 ReactDOM.render(
     <Provider store={store}>

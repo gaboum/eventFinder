@@ -8,6 +8,7 @@ import {
     SET_LOCATION,
     SET_PRICE,
     SET_TYPE,
+    SET_TEXT,
     SET_TODAY,
     SET_TOMORROW,
     SET_THIS_FRIDAY,
@@ -22,6 +23,7 @@ const filtersReducerDefaultState = {
     category      : '',
     type          : '',
     price         : '',
+    textFilter    : '',
     startRange    : moment(),
     endRange      : moment().add(14, 'days'),
 };
@@ -48,11 +50,13 @@ export default (state=filtersReducerDefaultState, action) => {
             return {...state, category : action.category};
             break;
         case SET_TYPE:
-            return {...state, category : action.category};
+            return {...state, typeOfE : action.category};
             break;
         case SET_PRICE:
             return {...state, price : action.price};
             break;
+        case SET_TEXT:
+            return {...state, textFilter  : action.text};
         case SET_TODAY:
             return {
                 ...state,

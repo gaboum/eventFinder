@@ -3,10 +3,10 @@
  */
 import React from 'react';
 
-export default class Browse extends React.Component {
-    render(){
-        return(
-            <h1>Browse</h1>
-        )
-    }
-}
+import FiltersForm from '../FiltersForm';
+
+export default () => (
+    <div id="browsePage">
+        <FiltersForm/>
+    </div>
+)

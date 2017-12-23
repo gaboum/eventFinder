@@ -9,13 +9,12 @@ const Footer = () => (
 
         <footer>
             <ul className="footer__links">
-                <li><NavLink className="footer__link text-center" to="/about">About Us</NavLink></li>
-                <li><NavLink className="footer__link text-center" to="#">Sign Up For News</NavLink></li>
+                <li><NavLink className="footer__link text-center" to="/about">**</NavLink></li>
+                <li><NavLink className="footer__link text-center" to="#">***</NavLink></li>
             </ul>
             <ul className="footer__info">
                 <li>
-                    <p id="footer__info">Our office is located 24, Rd No 2 Krong Battambang.
-                        We are open 8a.m. to 5p.m Monday to Friday.</p>
+                    <p id="footer__info">*********</p>
                 </li>
             </ul>
         </footer>
