@@ -8,6 +8,12 @@ import {getEvents, setError} from '../../actions/events';
 
 
 class HomePage extends React.Component {
+
+    /**
+     *
+     * Gets user's location and dispatches action which obtains nearby events
+     *
+     */
     componentWillMount() {
         const getLocation = () => {
             const geolocation = navigator.geolocation;
@@ -27,8 +33,9 @@ class HomePage extends React.Component {
         };
 
         getLocation()
-            .then(location => this.props.getEvents(location.coords));
-
+            .then(location => this.props.getEvents(location.coords))
+            .catch(err => this.props.setError(err))
+        ;
 
     }
 

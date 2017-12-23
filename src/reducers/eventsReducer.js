@@ -1,7 +1,7 @@
 /**
  * Created by HP on 23-Dec-17.
  */
-import {SET_ERROR, GET_NEARBY} from '../actions/types';
+import {SET_ERROR, SET_NEARBY} from '../actions/types';
 
 const eventReducerDefaultState = {
     events: [],
@@ -13,7 +13,7 @@ export default (state=eventReducerDefaultState, action) => {
         case SET_ERROR:
             return {...state, error : action.error};
         break;
-        case GET_NEARBY:
+        case SET_NEARBY:
             return {...state, events: action.events};
         default:
             return state;
