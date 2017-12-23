@@ -12,6 +12,8 @@ import Browse from '../components/pages/Browse';
 import CreateEvent from '../components/pages/CreateEvent';
 import SignUp from '../components/auth/SignIn';
 import SignIn from '../components/auth/SignUp';
+import RequireAuth from '../components/auth/RequireAuth';
+import AnimatedPage from '../components/AnimatedPageHOC';
 
 
 const AppRouter = () => (
@@ -19,12 +21,12 @@ const AppRouter = () => (
         <div>
             <Header />
             <Switch>
-                <Route path="/" component={HomePage} exact={true}/>
-                <Route path="/browse" component={Browse} />
-                <Route path="/create" component={CreateEvent} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/signin" component={SignIn} />
-                <Route component={PageNotFound}/>
+                <Route path="/" component={AnimatedPage(HomePage)} exact={true}/>
+                <Route path="/browse" component={AnimatedPage(Browse)} />
+                <Route path="/create" component={AnimatedPage(RequireAuth(CreateEvent))} />
+                <Route path="/signup" component={AnimatedPage(SignUp)} />
+                <Route path="/signin" component={AnimatedPage(SignIn)} />
+                <Route component={AnimatedPage(PageNotFound)}/>
             </Switch>
             <Footer/>
         </div>

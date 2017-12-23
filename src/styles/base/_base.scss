@@ -8,24 +8,12 @@ body {
   overflow-x: hidden;
 }
 
-button {
-  cursor: pointer;
+.mount-animation-appear {
+  opacity: 0.01;
 }
 
-button:disabled {
-  cursor: default;
+.mount-animation-appear.mount-animation-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 }
-
-.is-active {
-  font-weight: bold;
-}
-
-.error {
-  color : #a90000;
-}
-
-#app {
-  position: relative;
-}
-
 
