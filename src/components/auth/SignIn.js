@@ -3,10 +3,10 @@
  */
 import React from 'react';
 
-export default class HomePage extends React.Component {
+export default class SignIn extends React.Component {
     render(){
         return(
-            <h1>HOMePAGE</h1>
+            <h1>SignIn</h1>
         )
     }
 }

@@ -8,20 +8,21 @@ import {connect} from 'react-redux';
 export const Header = (props) => (
     <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-right">
-            <NavLink className="navbar-brand" to="/">Caldira</NavLink>
+            <NavLink className="navbar-brand" to="/">Revent</NavLink>
             <div className="collapse navbar-collapse" id="navbarColor03">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="/">Home</NavLink>
+                        <NavLink activeClassName="active" className="nav-link" to="/browse">Browse</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="/dishes">Menu</NavLink>
+                        <NavLink activeClassName="active" className="nav-link" to="/create">Create</NavLink>
                     </li>
-                    {props.haveItemsInOrder &&
                     <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="/order">Order</NavLink>
+                        <NavLink activeClassName="active" className="nav-link" to="/signup">SignUp</NavLink>
                     </li>
-                    }
+                    <li className="nav-item">
+                        <NavLink activeClassName="active" className="nav-link" to="/signin">SignIn</NavLink>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -29,7 +30,7 @@ export const Header = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-    haveItemsInOrder : (state.orders.items.length > 0)
+    fuzz : 'buzz'
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(undefined, undefined)(Header);
