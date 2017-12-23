@@ -3,6 +3,7 @@
  */
 import axios from 'axios';
 
+import {SET_ERROR} from './types';
 import ENVIRONMENT from '../../ENV';
 
 const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
@@ -10,21 +11,22 @@ const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
 
 export const getEvents = () => {
     return dispatch => {
-        axios.get(ROOT_URL,
-            {headers : {Authorization : 'Bearer ESEQ74FBDHKEOYMZCR7G'}}
+        axios.get(`https://www.eventbriteapi.com/v3/users/m/`,
+            {headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}}
             )
             .then(response => {
-                dispatch({type : 'ADD_ERROR'})
-                console.log(response);
+                dispatch(setError('OKejsdkl'))
+                console.warn(response);
             })
             .catch(error => {
-                console.log(error)
+                console.warn(error.response.data);
+                dispatch(setError(error.response.data.error_description));
             });
     }
 };
 
 
-const addError = (error) => ({
-    type : 'SET_ERROR',
+export const setError = (error) => ({
+    type : SET_ERROR,
     error
 });

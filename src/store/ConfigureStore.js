@@ -3,19 +3,21 @@
  */
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+
 import EventReducer from '../reducers/eventsReducer';
 
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     events : EventReducer,
 });
 
 export default () => {
-    return createStore(
-        reducers,
-        ['Use Redux'],
+    const store = createStore(
+        rootReducer,
         applyMiddleware(thunk),
-        // this line is for not reloading page on clicking navlinks
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+        /* preloadedState, */
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
+    return store;
 }
 

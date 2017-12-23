@@ -9,6 +9,7 @@ import 'antd/dist/antd.css';
 
 const store = ConfigureStore();
 
+
 ReactDOM.render(
     <Provider store={store}>
         <AppRouter/>
