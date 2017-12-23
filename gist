@@ -2,7 +2,7 @@
 () => ({options : []}) returning an object in an arrow function
 !! turns values to true and undefined to false
 {options, defaultChoice, name} = this.state distracting the state object into vars
-
+d
 
 BEM naming conventions for styles
 use normalize css for your style
