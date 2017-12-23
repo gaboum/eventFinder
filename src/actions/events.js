@@ -9,13 +9,17 @@ import ENVIRONMENT from '../../ENV';
 const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
 
 
-export const getEvents = () => dispatch => {
-    axios.get(`https://www.eventbriteapi.com/v3/users/me/`,
-        {headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}}
+export const getEvents = ({latitude, longitude}={}) => dispatch => {
+    let URL = `${ROOT_URL}/events/search/`;
+    URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
+    console.log(URL)
+    axios.get(`${URL}`,
+        {
+            headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}
+        }
     )
         .then(response => {
-            dispatch(setError('OKejsdkl'));
-            console.warn(response);
+            console.log(response.data.events);
         })
         .catch(error => {
             console.warn(error.response.data);
