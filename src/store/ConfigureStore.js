@@ -1,16 +1,10 @@
 /**
  * Created by HP on 30-Nov-17.
  */
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 
-import EventReducer from '../reducers/eventsReducer';
-
-
-const rootReducer = combineReducers({
-    events : EventReducer,
-});
-
+import rootReducer from '../reducers/rootReducer';
 
 /**
  *
