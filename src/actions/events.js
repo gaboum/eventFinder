@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import {SET_ERROR, SET_NEARBY} from './types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS} from './types';
 import ENVIRONMENT from '../../ENV';
 
 const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
@@ -17,6 +17,7 @@ const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
 export const getEvents = ({latitude, longitude}={}) => dispatch => {
     let URL = `${ROOT_URL}/events/search/`;
     URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
+    //console.log(URL)
     axios.get(`${URL}`,
         {
             headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}
@@ -52,7 +53,7 @@ export const getFilteredEvents = (props = {}) =>   {
         //console.log(URL);
         axios.get(URL, { headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}})
             .then(resp => {
-                console.log(resp.data.events)
+                dispatch({type : SET_FILTERED_EVENTS, events: resp.data.events})
             })
             .catch(err => console.log(err.response.data.error_description))
     }
