@@ -8,6 +8,7 @@ import {Input} from 'valuelink/tags';
 
 import * as actions from '../actions/filters';
 import {getFilteredEvents} from '../actions/events';
+import {getUsersLocality} from '../actions/userData';
 
 class FiltersForm extends LinkedComponent {
 
@@ -39,6 +40,7 @@ class FiltersForm extends LinkedComponent {
      */
     componentWillReceiveProps(nextProps){
         this.props.getFilteredEvents(nextProps);
+        this.props.getUsersLocality(nextProps.userData.location)
     }
 
 
@@ -46,7 +48,7 @@ class FiltersForm extends LinkedComponent {
         return (
             <div id="filterForm">
                 <Input type="text"
-                       placeholder="Location"             /** YOU NEED TO REDO IT TO SHOW USER'S LOCATION **/
+                       placeholder={this.props.userData.locality}             /** YOU NEED TO REDO IT TO SHOW USER'S LOCATION **/
                        valueLink={this.linkAt('location')}
                        onBlur={(e) => this.props.setLocation(e.target.value)}/>
 
@@ -96,7 +98,7 @@ class FiltersForm extends LinkedComponent {
 const mapStateToProps = state => ({
     categories   : state.filters.allCategories,
     filters      : state.filters,
-    userLocation : state.userData.location
+    userData     : state.userData
 });
 
 
@@ -114,6 +116,7 @@ const mapDispatchToProps = dispatch => {
     });
 
     dispatchers.getFilteredEvents = (arg) => dispatch(getFilteredEvents(arg));
+    dispatchers.getUsersLocality = (arg) => dispatch(getUsersLocality(arg));
 
     return dispatchers;
 };

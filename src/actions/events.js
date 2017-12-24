@@ -39,7 +39,7 @@ export const getFilteredEvents = (props = {}) =>   {
     return dispatch => {
 
         const {category, price, typeOfE, location, startRange, endRange} = props.filters;
-        const {latitude, longitude} = props.userLocation;
+        const {latitude, longitude} = props.userData.location;
 
         let URL = `${ROOT_URL}/events/search/?`;
         URL += latitude && longitude ? `location.latitude=${latitude}&location.longitude=${longitude}&` : '';
@@ -53,6 +53,7 @@ export const getFilteredEvents = (props = {}) =>   {
         //console.log(URL);
         axios.get(URL, { headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}})
             .then(resp => {
+                console.log(resp)
                 dispatch({type : SET_FILTERED_EVENTS, events: resp.data.events})
             })
             .catch(err => console.log(err.response.data.error_description))
