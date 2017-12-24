@@ -4,21 +4,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {
-    getCategories,
-    setCategory,
-    setLocation,
-    setPrice,
-    setType,
-    setText,
-    setToday,
-    setTomorrow,
-    setThisFriday,
-    setThisWeek,
-    setThisWeekend,
-    setNextWeek,
-    setThisMonth
-} from '../actions/filters';
+import * as actions from '../actions/filters';
 
 class FiltersForm extends React.Component {
 
@@ -30,7 +16,7 @@ class FiltersForm extends React.Component {
     };
 
     componentWillMount() {
-        this.props.getCategories();
+       this.props.getCategories();
     }
 
 
@@ -68,9 +54,15 @@ const mapStateToProps = state => ({
     categories : state.filters.allCategories,
 });
 
-const mapDispatchToProps = dispatch => ({
-    getCategories : () => dispatch(getCategories()),
-});
+const mapDispatchToProps = dispatch => {
+    const dispatchers = {};
+
+    Object.keys(actions).forEach(action => {
+        dispatchers[action] = (arg) => dispatch(actions[action](arg));
+    });
+
+    return dispatchers;
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltersForm)
