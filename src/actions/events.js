@@ -17,14 +17,13 @@ const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
 export const getEvents = ({latitude, longitude}={}) => dispatch => {
     let URL = `${ROOT_URL}/events/search/`;
     URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
-
     axios.get(`${URL}`,
         {
             headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}
         }
     )
         .then(response => {
-            // console.log(response.data.events);
+            //console.log(response.data.events);
             dispatch(setNearby(response.data.events));
         })
         .catch(error => {

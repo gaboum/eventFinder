@@ -11,14 +11,20 @@ class HomePage extends React.Component {
 
     /**
      *
-     * Gets user's location and dispatches action which obtains nearby events
-     *
+     * Dispatches action which obtains nearby events
      */
-    componentDidMount() {
-        /*this.props.getLocation()
-            .then(location => this.props.getEvents(location.coords))
-            .catch(err => this.props.setError(err))
-        ;*/
+    componentDidUpdate() {
+        this.props.getEvents(this.props.location)
+    }
+
+    /**
+     * Prevents component on infinite updating after receiving events from AJAX call
+     * @param nextProps
+     * @param nextState
+     * @returns {boolean}
+     */
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.location.latitude !== nextProps.location.latitude;
     }
 
 
@@ -29,9 +35,15 @@ class HomePage extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    location : state.userData.location,
+    events   : state.events.events
+});
+
 const mapDispatchToProps = dispatch => ({
     getEvents : (cords) => dispatch(getEvents(cords)),
     setError : (error) => dispatch(setError(error))
 });
 
-export default connect(undefined, mapDispatchToProps)(HomePage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
