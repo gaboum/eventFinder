@@ -5,6 +5,7 @@ import {combineReducers} from 'redux';
 
 import EventReducer from '../reducers/eventsReducer';
 import FiltersReducer from '../reducers/filtersReducer';
+import UserDataReducer from '../reducers/userDataReducer';
 
 
 /**
@@ -12,8 +13,9 @@ import FiltersReducer from '../reducers/filtersReducer';
  * @type {Reducer<S>}
  */
 const rootReducer = combineReducers({
-    events  : EventReducer,
-    filters : FiltersReducer,
+    events   : EventReducer,
+    filters  : FiltersReducer,
+    userData : UserDataReducer,
 });
 
 export default rootReducer;

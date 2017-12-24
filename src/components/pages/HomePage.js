@@ -14,29 +14,11 @@ class HomePage extends React.Component {
      * Gets user's location and dispatches action which obtains nearby events
      *
      */
-    componentWillMount() {
-        const getLocation = () => {
-            const geolocation = navigator.geolocation;
-
-            return  new Promise((resolve, reject) => {
-                if (!geolocation) {
-                    reject(new Error('Not Supported'));
-                }
-
-                geolocation.getCurrentPosition((position) => {
-                    //console.log(position.coords);
-                    resolve(position);
-                }, () => {
-                    reject(new Error('Permission denied'));
-                });
-            });
-        };
-
-        getLocation()
+    componentDidMount() {
+        /*this.props.getLocation()
             .then(location => this.props.getEvents(location.coords))
             .catch(err => this.props.setError(err))
-        ;
-
+        ;*/
     }
 
 

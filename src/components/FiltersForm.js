@@ -22,10 +22,17 @@ class FiltersForm extends LinkedComponent {
         prices: ['all prices', 'paid', 'free']
     };
 
+    /*
+      * Gets list of categories from API
+     */
     componentWillMount() {
        this.props.getCategories();
     }
 
+    /**
+     * Gets filtered events accordingly with user's input
+     * @param nextProps
+     */
     componentWillReceiveProps(nextProps){
         this.props.getFilteredEvents(nextProps.filters);
     }

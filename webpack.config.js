@@ -40,7 +40,7 @@ module.exports = (env) => {
         plugins : [
             CSSExtract,
         ],
-        devtool: isProduction ? 'source-map' : 'cheap-eval-source-map', // source map for locating a bug in source files, not in the bundle
+        devtool: isProduction ? 'source-map' : 'eval-source-map', // source map for locating a bug in source files, not in the bundle
         devServer: {
             contentBase: path.join(__dirname, "public"),
             publicPath: "/scripts/",
