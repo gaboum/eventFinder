@@ -24,14 +24,33 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
         }
     )
         .then(response => {
-            //console.log(response.data.events);
+            // console.log(response.data.events);
             dispatch(setNearby(response.data.events));
         })
         .catch(error => {
-            console.log(error.response.data.error_description);
+            // console.log(error.response.data.error_description);
             dispatch(setError(error.response.data.error_description));
         });
 };
+
+
+export const getFilteredEvents = ({category, price, typeOfE, location, startRange, endRange} = {}) => dispatch =>  {
+    let URL = `${ROOT_URL}/events/search/?`;
+    URL += category ? `categories=${category}&` : '';
+    URL += typeOfE ? `q=${typeOfE}&`: '';
+    URL += price ? `price=${price === 'free' ? 'free' : 'paid'}&` : '';
+    URL += location ? `location.address=${location.trim()}&` : '';
+    URL += startRange ? `start_date.range_start=${adjustTimestamps(startRange)}&` : '';
+    URL += endRange   ? `start_date.range_end=${adjustTimestamps(endRange)}` : '';
+
+    console.log(URL);
+    axios.get(URL, { headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}})
+        .then(resp => {
+            console.log(resp.data.events)
+        })
+        .catch(err => console.log(err.response.data.error_description))
+};
+
 
 
 /**
@@ -51,3 +70,9 @@ export const setNearby = (events) =>({
     type : SET_NEARBY,
     events
 });
+
+/**
+ * Adjasts timestamp to the format which is required by eventbrite API
+ * @param timeStamp
+ */
+const adjustTimestamps = timeStamp => timeStamp.replace(' ', 'T');

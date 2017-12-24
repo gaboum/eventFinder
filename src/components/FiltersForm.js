@@ -7,6 +7,7 @@ import {LinkedComponent} from 'valuelink';
 import {Input} from 'valuelink/tags';
 
 import * as actions from '../actions/filters';
+import {getFilteredEvents} from '../actions/events';
 
 class FiltersForm extends LinkedComponent {
 
@@ -25,41 +26,31 @@ class FiltersForm extends LinkedComponent {
        this.props.getCategories();
     }
 
-    /*getFilters() {
-        const html = [];
-        Object.keys(this.filters).forEach(key => {
-            html.push(
-                <div className="filterForm__filter" key={key}>
-                    <div className="filterForm__group">{key}</div>
-                    {this.filters[key].map((filter, i) => {
-                       return  <div className="filterForm__control" key={i} onClick={()=> this.props.dispatch(setFilter(key, filter))}>{filter}</div>
-                    })}
-                </div>
-            )
-        });
-        return html;
-    }*/
+    componentWillReceiveProps(nextProps){
+        this.props.getFilteredEvents(nextProps.filters);
+    }
+
 
     render(){
         return (
             <div id="filterForm">
                 <Input type="text"
-                       placeholder="Location"
+                       placeholder="Location"             /** YOU NEED TO REDO IT TO SHOW USER'S LOCATION **/
                        valueLink={this.linkAt('location')}
-                       onKeyDown={(e) => this.props.setLocation(e.target.value)}/>
+                       onBlur={(e) => this.props.setLocation(e.target.value)}/>
 
                 <div className="filterForm__filter">
                     <div className="filterForm__group">Categories</div>
                     {this.props.categories.map((category, i) => (
                         <div
                             className="filterForm__control"
-                            onClick={() => this.props.setCategory(category.name)}
+                            onClick={() => this.props.setCategory(category.id)}
                             key={i}>
                             {category.name}
                         </div>
                     ))}
                 </div>
-                <div className="filterForm__filter">
+                /*<div className="filterForm__filter">
                     <div className="filterForm__group">Event Type</div>
                     {this.filters.types.map((filter, i) => (
                         <div
@@ -69,7 +60,7 @@ class FiltersForm extends LinkedComponent {
                             {filter}
                         </div>
                     ))}
-                </div>
+                </div>*/
                 <div className="filterForm__filter">
                     <div className="filterFrom__group">Price</div>
                     {this.filters.prices.map((pr, i) => (
@@ -93,6 +84,7 @@ class FiltersForm extends LinkedComponent {
 
 const mapStateToProps = state => ({
     categories : state.filters.allCategories,
+    filters    : state.filters
 });
 
 
@@ -108,6 +100,8 @@ const mapDispatchToProps = dispatch => {
     Object.keys(actions).forEach(action => {
         dispatchers[action] = (arg) => dispatch(actions[action](arg));
     });
+
+    dispatchers.getFilteredEvents = (arg) => dispatch(getFilteredEvents(arg));
 
     return dispatchers;
 };

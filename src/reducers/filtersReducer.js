@@ -27,8 +27,8 @@ const filtersReducerDefaultState = {
     price         : '',
     textFilter    : '',
     dateRangeText : '',
-    startRange    : moment(),
-    endRange      : moment().add(14, 'days'),
+    startRange    : moment().format('YYYY-MM-DD HH:mm:ss'),
+    endRange      : '',
 };
 
 /**

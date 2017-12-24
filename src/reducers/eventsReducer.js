@@ -5,6 +5,7 @@ import {SET_ERROR, SET_NEARBY} from '../actions/types';
 
 const eventReducerDefaultState = {
     events : [],
+    filteredEvents : [],
     error  : '',
 };
 
