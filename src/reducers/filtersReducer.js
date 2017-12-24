@@ -4,6 +4,7 @@
 import moment from 'moment';
 
 import {
+    GET_CATEGORIES,
     SET_CATEGORY,
     SET_LOCATION,
     SET_PRICE,
@@ -19,6 +20,7 @@ import {
 } from '../actions/types';
 
 const filtersReducerDefaultState = {
+    allCategories : [],
     location      : '',
     category      : '',
     type          : '',
@@ -43,6 +45,9 @@ const thisMonthEnd = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
 
 export default (state=filtersReducerDefaultState, action) => {
     switch (action.type) {
+        case GET_CATEGORIES:
+            return {...state, allCategories : action.categories};
+            break;
         case SET_LOCATION:
             return {...state, location: action.location};
             break;

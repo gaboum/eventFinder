@@ -1,6 +1,10 @@
 /**
  * Created by HP on 24-Dec-17.
  */
+import axios from 'axios';
+
+import ENV from '../../ENV';
+import {setError} from './events';
 import {
     SET_CATEGORY,
     SET_LOCATION,
@@ -13,8 +17,29 @@ import {
     SET_THIS_WEEK,
     SET_THIS_WEEKEND,
     SET_NEXT_WEEK,
-    SET_THIS_MONTH
+    SET_THIS_MONTH,
+    GET_CATEGORIES,
 } from './types';
+
+const ROOT_URL = ENV.eventbriteAPI.rootURL;
+
+/**
+ * Requests list of categories from eventbrite API and put them into the Redux store
+ */
+export const getCategories = () => dispatch => {
+    axios.get(`${ROOT_URL}/categories/`, {headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+        .then(resp =>  {
+            //console.log(resp.data.categories);
+            dispatch({
+                type : GET_CATEGORIES,
+                categories : resp.data.categories
+            })
+        })
+        .catch(err => {
+            //console.log(err.response.data.error_description);
+            dispatch(setError(err.response.data.error_description));
+        })
+};
 
 
 /**
@@ -110,4 +135,7 @@ export const setNextWeek = () => ({
 export const setThisMonth = () => ({
     type : SET_THIS_MONTH
 });
+
+
+
 
