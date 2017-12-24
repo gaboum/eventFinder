@@ -26,6 +26,7 @@ const filtersReducerDefaultState = {
     type          : '',
     price         : '',
     textFilter    : '',
+    dateRangeText : '',
     startRange    : moment(),
     endRange      : moment().add(14, 'days'),
 };
@@ -55,7 +56,7 @@ export default (state=filtersReducerDefaultState, action) => {
             return {...state, category : action.category};
             break;
         case SET_TYPE:
-            return {...state, typeOfE : action.category};
+            return {...state, typeOfE : action.typeOfE};
             break;
         case SET_PRICE:
             return {...state, price : action.price};
@@ -65,6 +66,7 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_TODAY:
             return {
                 ...state,
+                dateRangeText : 'today',
                 startRange : today,
                 endRange   : today
             };
@@ -72,6 +74,7 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_TOMORROW:
             return {
                 ...state,
+                dateRangeText : 'tomorrow',
                 startRange : tomorrow,
                 endRange   : tomorrow
             };
@@ -79,6 +82,7 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_THIS_WEEK:
             return {
                 ...state,
+                dateRangeText : 'this week',
                 startRange : today,
                 endRange   : thisWeekendEnd
             };
@@ -86,12 +90,14 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_THIS_FRIDAY:
             return {
                 ...state,
+                dateRangeText : 'this friday',
                 startRange : friday,
                 endRange   : friday
             };
         case SET_THIS_WEEKEND:
             return {
                 ...state,
+                dateRangeText : 'this weekend',
                 startRange : thisWeekendStart,
                 endRange   : thisWeekendEnd
             };
@@ -99,6 +105,7 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_NEXT_WEEK:
             return {
                 ...state,
+                dateRangeText : 'next week',
                 startRange : nextWeekStart,
                 endRange   : nextWeekEnd
             };
@@ -106,6 +113,7 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_THIS_MONTH:
             return {
                 ...state,
+                dateRangeText : 'this month',
                 startRange : today,
                 endRange   : thisMonthEnd
             };
