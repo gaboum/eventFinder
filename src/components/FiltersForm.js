@@ -15,6 +15,10 @@ class FiltersForm extends LinkedComponent {
         location : ''
     };
 
+    /**
+     * List of all filters apart categories
+     * @type {{types: [*], dates: [*], prices: [*]}}
+     */
     filters = {
         types      : ['class', 'seminar', 'seminar', 'expo', 'party', 'conference',
             'networking', 'rally', 'game', 'retreat', 'gala'],
@@ -34,7 +38,7 @@ class FiltersForm extends LinkedComponent {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps){
-        this.props.getFilteredEvents(nextProps.filters);
+        this.props.getFilteredEvents(nextProps);
     }
 
 
@@ -90,8 +94,9 @@ class FiltersForm extends LinkedComponent {
 }
 
 const mapStateToProps = state => ({
-    categories : state.filters.allCategories,
-    filters    : state.filters
+    categories   : state.filters.allCategories,
+    filters      : state.filters,
+    userLocation : state.userData.location
 });
 
 
