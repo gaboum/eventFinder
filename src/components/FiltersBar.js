@@ -34,7 +34,7 @@ const filters = (list, dispatch) => {
     delete list.endRange;
     const filters = [];
     for (const filter in list){
-        filters.push(<div key={filter} onClick={() => dispatch(removeFilter(filter))}>{list[filter]}</div>)
+        filters.push(<div key={filter.filter} onClick={() => dispatch(removeFilter(filter))}>{list[filter]}</div>)
     }
     return filters;
 };

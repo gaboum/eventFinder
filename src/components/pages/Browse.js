@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 
 import FiltersForm from '../FiltersForm';
 import FiltersBar from '../FiltersBar';
+import Event from '../Event';
 import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
 
@@ -33,9 +34,22 @@ class Browse extends React.Component {
 
     render(){
         return(
-            <div id="browsePage">
-                <FiltersForm/>
-                <FiltersBar/>
+            <div className="browse-page">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <FiltersForm/>
+                        </div>
+                        <div className="col-md-9">
+                            <FiltersBar/>
+                            {this.props.events.map(ev => {
+                                return <Event
+                                    
+                                />
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -58,7 +72,8 @@ Browse.propTypes = {
  */
 const mapStateToProps = state => ({
     filters      : state.filters,
-    userData     : state.userData
+    userData     : state.userData,
+    events       : state.events.filteredEvents
 });
 
 

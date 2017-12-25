@@ -97,16 +97,6 @@ class FiltersForm extends LinkedComponent {
 
 
 /**
- * Validating props
- * @type {{categories: *, userData}}
- */
-FiltersForm.propTypes = {
-    categories : PropTypes.array,
-    userData   : PropTypes.object.isRequired
-};
-
-
-/**
  * Mapping categories of events and user's data object to props
  * @param state
  */
