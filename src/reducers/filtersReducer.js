@@ -23,7 +23,8 @@ const filtersReducerDefaultState = {
     allCategories : [],
     location      : '',
     category      : '',
-    type          : '',
+    categoryName  : '',
+    typeOfE       : '',
     price         : '',
     textFilter    : '',
     dateRangeText : '',
@@ -53,7 +54,11 @@ export default (state=filtersReducerDefaultState, action) => {
             return {...state, location: action.location};
             break;
         case SET_CATEGORY:
-            return {...state, category : action.category};
+            return {
+                ...state,
+                category     : action.category.id,
+                categoryName : action.category.name
+            };
             break;
         case SET_TYPE:
             return {...state, typeOfE : action.typeOfE};

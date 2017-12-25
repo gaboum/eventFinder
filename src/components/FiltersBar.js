@@ -25,6 +25,9 @@ const FiltersBar = props => (
  */
 const filters = list => {
     delete list.allCategories;
+    delete list.category;
+    delete list.startRange;
+    delete list.endRange;
     const filters = [];
     for (const filter in list){
         filters.push(<div key={filter}>{list[filter]}</div>)

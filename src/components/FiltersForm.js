@@ -56,7 +56,7 @@ class FiltersForm extends LinkedComponent {
                     {this.props.categories.map((category, i) => (
                         <div
                             className="filterForm__control"
-                            onClick={() => this.props.setCategory(category.id)}
+                            onClick={() => this.props.setCategory(category)}
                             key={i}>
                             {category.name}
                         </div>
