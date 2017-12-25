@@ -6,9 +6,9 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 
 import FiltersForm from '../FiltersForm';
+import FiltersBar from '../FiltersBar';
 import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
-
 
 
 class Browse extends React.Component {
@@ -35,6 +35,7 @@ class Browse extends React.Component {
         return(
             <div id="browsePage">
                 <FiltersForm/>
+                <FiltersBar/>
             </div>
         )
     }
