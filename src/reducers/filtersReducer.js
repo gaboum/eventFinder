@@ -29,7 +29,7 @@ const filtersReducerDefaultState = {
     price         : '',
     textFilter    : '',
     dateRangeText : '',
-    startRange    : moment().format('YYYY-MM-DD HH:mm:ss'),
+    startRange    : defaultStart,
     endRange      : '',
 };
 
@@ -44,6 +44,7 @@ const thisWeekendEnd = moment().endOf('isoWeek').format('YYYY-MM-DD HH:mm:ss');
 const nextWeekStart = moment().add(1, 'week').startOf('isoWeek').format('YYYY-MM-DD HH:mm:ss');
 const nextWeekEnd = moment().add(1, 'week').endOf('isoWeek').format('YYYY-MM-DD HH:mm:ss');
 const thisMonthEnd = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
+const defaultStart = moment().format('YYYY-MM-DD HH:mm:ss');
 
 
 export default (state=filtersReducerDefaultState, action) => {
@@ -58,7 +59,7 @@ export default (state=filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 category     : action.category.id,
-                categoryName : action.category.name
+                categoryName : action.category.name,
             };
             break;
         case SET_TYPE:
@@ -70,8 +71,15 @@ export default (state=filtersReducerDefaultState, action) => {
         case SET_TEXT:
             return {...state, textFilter  : action.text};
         case REMOVE_FILTER:
+            const filterName = action.filter.filter;
             const newState = {...state};
-            newState[action.filter.filter] = '';
+            newState[filterName] = '';
+            if (filterName === 'dateRangeText') {
+                newState['startRange'] = defaultStart;
+                newState['endRange']   = '';
+            } else if (filterName === 'categoryName') {
+                newState['category'] = '';
+            }
             return newState;
             break;
         case SET_TODAY:

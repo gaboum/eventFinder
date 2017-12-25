@@ -2,6 +2,12 @@
  * Created by HP on 25-Dec-17.
  */
 
+/**
+ * Compares old and new sets of filters (necessary for decision about sending a new AJAX request)
+ * @param oldFilters
+ * @param newFilters
+ * @returns {boolean}
+ */
 export const filtersAreSame = (oldFilters, newFilters) => {
     let filtersSame = true;
     let of = {...oldFilters};

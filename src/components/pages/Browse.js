@@ -13,6 +13,10 @@ import {getUsersLocality} from '../../actions/userData';
 import {filtersAreSame} from '../../helpers/compareFilters';
 
 
+
+/**
+ * Represents the Browse page
+ */
 class Browse extends React.Component {
 
     /**
@@ -29,7 +33,7 @@ class Browse extends React.Component {
      * Dispatches a new AJAX request if filters were changed
      * @param nextProps
      */
-    componentWillReceiveProps(nextProps){
+    componentDidUpdate(nextProps){
         this.props.getUsersLocality(nextProps.userData.location);
         if (!filtersAreSame(nextProps.filters, this.props.filters)) {
             this.props.getFilteredEvents(this.props);
