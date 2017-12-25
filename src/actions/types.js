@@ -21,6 +21,7 @@ export const SET_THIS_WEEK       = 'SET_THIS_WEEK';
 export const SET_NEXT_WEEK       = 'SET_NEXT_WEEK';
 export const SET_THIS_MONTH      = 'SET_THIS_MONTH';
 export const GET_CATEGORIES      = 'GET_CATEGORIES';
+export const REMOVE_FILTER       = 'REMOVE_FILTER';
 
 // USER DATA ACTIONS
 export const SET_USER_LOCATION   = 'SET_USER_LOCATION';

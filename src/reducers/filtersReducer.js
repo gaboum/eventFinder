@@ -16,7 +16,8 @@ import {
     SET_THIS_WEEK,
     SET_THIS_WEEKEND,
     SET_NEXT_WEEK,
-    SET_THIS_MONTH
+    SET_THIS_MONTH,
+    REMOVE_FILTER
 } from '../actions/types';
 
 const filtersReducerDefaultState = {
@@ -68,6 +69,11 @@ export default (state=filtersReducerDefaultState, action) => {
             break;
         case SET_TEXT:
             return {...state, textFilter  : action.text};
+        case REMOVE_FILTER:
+            const newState = {...state};
+            newState[action.filter.filter] = '';
+            return newState;
+            break;
         case SET_TODAY:
             return {
                 ...state,

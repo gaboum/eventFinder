@@ -19,6 +19,7 @@ import {
     SET_NEXT_WEEK,
     SET_THIS_MONTH,
     GET_CATEGORIES,
+    REMOVE_FILTER,
 } from './types';
 
 const ROOT_URL = ENV.eventbriteAPI.rootURL;
@@ -134,6 +135,15 @@ export const setNextWeek = () => ({
  */
 export const setThisMonth = () => ({
     type : SET_THIS_MONTH
+});
+
+/**
+ * Removes a filter from the filter bar
+ * @param filter
+ */
+export const removeFilter = filter => ({
+    type : REMOVE_FILTER,
+    filter
 });
 
 

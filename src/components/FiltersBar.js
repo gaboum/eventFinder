@@ -6,6 +6,9 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
+import {removeFilter} from '../actions/filters';
+
+
 /**
  * Represents filter bar on the browse events page
  * @param props
@@ -13,7 +16,7 @@ import PropTypes from 'prop-types';
  */
 const FiltersBar = props => (
     <div className="filter-bar" style={{border: 'red 1px solid'}}>
-        {filters({...props.filters})}
+        {filters({...props.filters}, props.removeFilter)}
     </div>
 );
 
@@ -21,16 +24,17 @@ const FiltersBar = props => (
 /**
  * Loop for getting divs with names of filters
  * @param list
+ * @param dispatch
  * @returns {Array}
  */
-const filters = list => {
+const filters = (list, dispatch) => {
     delete list.allCategories;
     delete list.category;
     delete list.startRange;
     delete list.endRange;
     const filters = [];
     for (const filter in list){
-        filters.push(<div key={filter}>{list[filter]}</div>)
+        filters.push(<div key={filter} onClick={() => dispatch(removeFilter(filter))}>{list[filter]}</div>)
     }
     return filters;
 };
@@ -61,7 +65,7 @@ const mapStateToProps = state => ({
  * @param dispatch
  */
 const mapDispatchToProps = dispatch => ({
-
+    removeFilter : filter => dispatch(removeFilter(filter))
 });
 
-export default connect(mapStateToProps, undefined)(FiltersBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersBar);

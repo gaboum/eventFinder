@@ -1,7 +1,7 @@
 /**
  * Created by HP on 23-Dec-17.
  */
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS} from '../actions/types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, REMOVE_FILTER} from '../actions/types';
 
 const eventReducerDefaultState = {
     events : [],
