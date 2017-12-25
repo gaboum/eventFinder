@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {getEvents, setError} from '../../actions/events';
+import SearchForm from '../SearchForm';
 
 
 class HomePage extends React.Component {
@@ -31,7 +32,10 @@ class HomePage extends React.Component {
 
     render(){
         return(
-            <h1>HomePage</h1>
+            <div className="homepage">
+                <h1>Home Page</h1>
+                <SearchForm/>
+            </div>
         )
     }
 }

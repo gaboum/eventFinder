@@ -24,7 +24,7 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
         }
     )
         .then(response => {
-            console.log(response.data.events);
+            //console.log(response.data.events);
             dispatch(setNearby(response.data.events));
         })
         .catch(error => {
@@ -43,13 +43,14 @@ export const getFilteredEvents = (props = {}) =>   {
 
     return dispatch => {
 
-        const {category, price, typeOfE, location, startRange, endRange} = props.filters;
+        const {category, price, typeOfE, location, startRange, endRange, textFilter } = props.filters;
         const {latitude, longitude} = props.userData.location;
+        const search = `${typeOfE}${textFilter}&`;
 
         let URL = `${ROOT_URL}/events/search/?`;
         if(!location) URL += latitude && longitude ? `location.latitude=${latitude}&location.longitude=${longitude}&` : '';
         URL += category ? `categories=${category}&` : '';
-        URL += typeOfE ? `q=${typeOfE}&`: '';
+        URL += typeOfE || textFilter ? `q=${search}`: '';
         URL += price ? `price=${price === 'free' ? 'free' : 'paid'}&` : '';
         URL += location ? `location.address=${location.trim()}&` : '';
         URL += startRange ? `start_date.range_start=${adjustTimestamps(startRange)}&` : '';

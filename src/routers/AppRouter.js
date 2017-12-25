@@ -1,7 +1,8 @@
 /**
  * Created by HP on 29-Nov-17.
  */
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter,Router, Route, Switch} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import React from 'react';
 
 import Header from '../components/Header';
@@ -15,9 +16,10 @@ import SignIn from '../components/auth/SignUp';
 import RequireAuth from '../components/auth/RequireAuth';
 import AnimatedPage from '../components/AnimatedPageHOC';
 
+const history = createHistory();
 
 const AppRouter = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <div>
             <Header />
             <Switch>
@@ -30,7 +32,7 @@ const AppRouter = () => (
             </Switch>
             <Footer/>
         </div>
-    </BrowserRouter>
+    </Router>
 );
 
 export default AppRouter;
