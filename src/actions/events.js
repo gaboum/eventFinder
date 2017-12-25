@@ -24,7 +24,7 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
         }
     )
         .then(response => {
-            //console.log(response.data.events);
+            console.log(response.data.events);
             dispatch(setNearby(response.data.events));
         })
         .catch(error => {

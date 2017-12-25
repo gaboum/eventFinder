@@ -44,7 +44,8 @@ class Browse extends React.Component {
                             <FiltersBar/>
                             {this.props.events.map(ev => {
                                 return <Event
-                                    
+                                    key={ev.id}
+                                    event={ev}
                                 />
                             })}
                         </div>
