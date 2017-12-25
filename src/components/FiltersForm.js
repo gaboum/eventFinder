@@ -30,8 +30,9 @@ class FiltersForm extends LinkedComponent {
     /*
       * Gets list of categories from API
      */
-    componentWillMount() {
+    componentDidMount() {
        this.props.getCategories();
+       this.props.getFilteredEvents(this.props);
     }
 
     /**
@@ -39,7 +40,6 @@ class FiltersForm extends LinkedComponent {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps){
-        this.props.getFilteredEvents(nextProps);
         this.props.getUsersLocality(nextProps.userData.location)
     }
 

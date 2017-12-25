@@ -4,9 +4,9 @@
 import axios from 'axios';
 
 import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS} from './types';
-import ENVIRONMENT from '../../ENV';
+import ENV from '../../ENV';
 
-const ROOT_URL = ENVIRONMENT.eventbriteAPI.rootURL;
+const ROOT_URL = ENV.eventbriteAPI.rootURL;
 
 /**
  * Creates an AJAX request to eventbrite API
@@ -20,7 +20,7 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
     //console.log(URL)
     axios.get(`${URL}`,
         {
-            headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}
+            headers : {Authorization : ENV.eventbriteAPI.OAuthToken}
         }
     )
         .then(response => {
@@ -34,6 +34,11 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
 };
 
 
+/**
+ * Gets filtered events in accordance with user's input
+ * @param props
+ * @returns {function(*)}
+ */
 export const getFilteredEvents = (props = {}) =>   {
 
     return dispatch => {
@@ -51,9 +56,9 @@ export const getFilteredEvents = (props = {}) =>   {
         URL += endRange   ? `start_date.range_end=${adjustTimestamps(endRange)}` : '';
 
         //console.log(URL);
-        axios.get(URL, { headers : {Authorization : ENVIRONMENT.eventbriteAPI.OAuthToken}})
+        axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
             .then(resp => {
-                console.log(resp)
+                console.log(resp);
                 dispatch({type : SET_FILTERED_EVENTS, events: resp.data.events})
             })
             .catch(err => console.log(err.response.data.error_description))
