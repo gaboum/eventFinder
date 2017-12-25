@@ -10,6 +10,7 @@ import FiltersBar from '../FiltersBar';
 import Event from '../Event';
 import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
+import {filtersAreSame} from '../../helpers/compareFilters';
 
 
 class Browse extends React.Component {
@@ -25,10 +26,14 @@ class Browse extends React.Component {
 
     /**
      * Gets filtered events accordingly with user's input
+     * Dispatches a new AJAX request if filters were changed
      * @param nextProps
      */
     componentWillReceiveProps(nextProps){
-        this.props.getUsersLocality(nextProps.userData.location)
+        this.props.getUsersLocality(nextProps.userData.location);
+        if (!filtersAreSame(nextProps.filters, this.props.filters)) {
+            this.props.getFilteredEvents(this.props);
+        }
     }
 
 

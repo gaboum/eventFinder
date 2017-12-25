@@ -3,13 +3,14 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const Event = props => {
-    const {is_free, start, name, logo, description, end} = props.event;
+    const {is_free, start, name, logo, description, end, id} = props.event;
 
     return (
         <div className="event">
-            <a className="event__link">
+            <Link className="event__link" to={`/event/${id}`}>
                 <div className="event__picture-container">
                     <img src={logo.url} className="event__picture"/>
                     <div className="event__price-type">{is_free ? 'FREE' : ''}</div>
@@ -23,7 +24,7 @@ const Event = props => {
                     <div className="event__tags">{end.timezone}</div>
                     <div className="event__save"></div>
                 </div>
-            </a>
+            </Link>
         </div>
     )
 };
