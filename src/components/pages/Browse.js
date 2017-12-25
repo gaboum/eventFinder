@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types'
 
 import FiltersForm from '../FiltersForm';
 import {getFilteredEvents} from '../../actions/events';
@@ -30,7 +31,6 @@ class Browse extends React.Component {
     }
 
 
-
     render(){
         return(
             <div id="browsePage">
@@ -40,11 +40,31 @@ class Browse extends React.Component {
     }
 }
 
+
+/**
+ * Validation of props
+ * @type {{userData, filters}}
+ */
+Browse.propTypes = {
+    userData : PropTypes.object.isRequired,
+    filters  : PropTypes.object.isRequired,
+};
+
+
+/**
+ * Mapping filters and user's data to props
+ * @param state
+ */
 const mapStateToProps = state => ({
     filters      : state.filters,
     userData     : state.userData
 });
 
+
+/**
+ * Mapping dispatching of filtered events AJAX and user locality AJAX to google API
+ * @param dispatch
+ */
 const mapDispatchToProps = dispatch => ({
     getFilteredEvents : args => dispatch(getFilteredEvents(args)),
     getUsersLocality  : args => dispatch(getUsersLocality(args))

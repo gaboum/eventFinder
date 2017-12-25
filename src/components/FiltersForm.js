@@ -5,6 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {LinkedComponent} from 'valuelink';
 import {Input} from 'valuelink/tags';
+import PropTypes from 'prop-types';
 
 import * as actions from '../actions/filters';
 
@@ -93,6 +94,22 @@ class FiltersForm extends LinkedComponent {
     }
 }
 
+
+
+/**
+ * Validating props
+ * @type {{categories: *, userData}}
+ */
+FiltersForm.propTypes = {
+    categories : PropTypes.array,
+    userData   : PropTypes.object.isRequired
+};
+
+
+/**
+ * Mapping categories of events and user's data object to props
+ * @param state
+ */
 const mapStateToProps = state => ({
     categories   : state.filters.allCategories,
     userData     : state.userData

@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {getEvents, setError} from '../../actions/events';
 
@@ -35,11 +36,30 @@ class HomePage extends React.Component {
     }
 }
 
+/**
+ * Validation of props
+ * @type {{location: *, events: *}}
+ */
+HomePage.propTypes = {
+    location : PropTypes.object,
+    events   : PropTypes.array,
+};
+
+
+/**
+ * Mapping user's location alogn with nearby events to props
+ * @param state
+ */
 const mapStateToProps = state => ({
     location : state.userData.location,
     events   : state.events.events
 });
 
+
+/**
+ * Mapping dispatchers of getting nearby events and setting error to props
+ * @param dispatch
+ */
 const mapDispatchToProps = dispatch => ({
     getEvents : (cords) => dispatch(getEvents(cords)),
     setError : (error) => dispatch(setError(error))
