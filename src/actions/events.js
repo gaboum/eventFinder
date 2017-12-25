@@ -58,7 +58,7 @@ export const getFilteredEvents = (props = {}) =>   {
         //console.log(URL);
         axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
             .then(resp => {
-                console.log(resp);
+                //console.log(resp);
                 dispatch({type : SET_FILTERED_EVENTS, events: resp.data.events})
             })
             .catch(err => console.log(err.response.data.error_description))
