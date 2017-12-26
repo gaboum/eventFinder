@@ -1,5 +1,0 @@
-  use higher order functions for arrays like
-  function even(el){
-    return el % 2 === 0;
-  }
-  [3, 4, 6].filter(even)

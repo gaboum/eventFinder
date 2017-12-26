@@ -45,10 +45,10 @@ export default (ComposedComponent) => {
         }
     }
 
-    const mapStateToProps = (state) => ({
-
+    const mapStateToProps = state => ({
+        authenticated : true
     });
 
 
-    return connect(undefined, undefined)(Authentication);
+    return connect(mapStateToProps, undefined)(Authentication);
 }

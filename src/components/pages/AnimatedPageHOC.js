@@ -10,8 +10,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {CSSTransitionGroup} from 'react-transition-group';
 
-import {setUserLocation} from '../actions/userData';
-import {setError} from '../actions/events';
+import {setUserLocation} from '../../actions/userData';
+import {setError} from '../../actions/events';
 
 export default (AnimatedPage) => {
     class Animation extends React.Component {

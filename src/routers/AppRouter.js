@@ -14,12 +14,12 @@ import CreateEvent from '../components/pages/CreateEvent';
 import SignUp from '../components/auth/SignIn';
 import SignIn from '../components/auth/SignUp';
 import RequireAuth from '../components/auth/RequireAuth';
-import AnimatedPage from '../components/AnimatedPageHOC';
+import AnimatedPage from '../components/pages/AnimatedPageHOC';
 
-const history = createHistory();
+
 
 const AppRouter = () => (
-    <Router history={history}>
+    <BrowserRouter>
         <div>
             <Header />
             <Switch>
@@ -32,7 +32,7 @@ const AppRouter = () => (
             </Switch>
             <Footer/>
         </div>
-    </Router>
+    </BrowserRouter>
 );
 
 export default AppRouter;
