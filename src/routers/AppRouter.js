@@ -11,8 +11,8 @@ import HomePage from '../components/pages/HomePage';
 import PageNotFound from '../components/pages/HomePage';
 import Browse from '../components/pages/Browse';
 import CreateEvent from '../components/pages/CreateEvent';
-import SignUp from '../components/auth/SignIn';
-import SignIn from '../components/auth/SignUp';
+import SignIn from '../components/auth/SignIn';
+import SignUp from '../components/auth/SignUp';
 import RequireAuth from '../components/auth/RequireAuth';
 import AnimatedPage from '../components/pages/AnimatedPageHOC';
 

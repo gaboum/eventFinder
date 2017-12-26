@@ -5,6 +5,8 @@
 
 export default class FieldsValidator {
 
+
+
     /**
      * This method checks all inputs on the create event page
      * @param state
@@ -22,7 +24,6 @@ export default class FieldsValidator {
 
 
 
-
     /**
      * Checks whether a value is present
      * @param value
@@ -32,19 +33,21 @@ export default class FieldsValidator {
 
 
 
+
     /**
      * Checks whether a given value contains one lower case, one upper case
      * onde number and at least 8 characters long
      * @param value
      * @returns {boolean|*}
      */
-    static strongPassword = value => {
+    static isStrongPassword = value => {
         if(value){
-            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})$/;
+            const pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
             return pattern.test(value);
         }
         return false;
     };
+
 
 
 
@@ -63,6 +66,7 @@ export default class FieldsValidator {
 
 
 
+
     /**
      * Checks whether a given string is a valid email
      * @param email
@@ -72,6 +76,21 @@ export default class FieldsValidator {
         if (email) {
             const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return pattern.test(email);
+        }
+        return false;
+    };
+
+
+
+    /**
+     * Checks if passwords are same
+     * @param pass1
+     * @param pass2
+     * @returns {boolean}
+     */
+    static passwordsAreEqual = (pass1, pass2) => {
+        if (pass1 && pass2){
+            return pass1 === pass2;
         }
         return false;
     }
