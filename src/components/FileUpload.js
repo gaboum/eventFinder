@@ -42,6 +42,7 @@ export default class FileUpload extends React.Component {
                 loading: false,
             }));
         }
+        this.props.onChange();
     }
     render() {
         const uploadButton = (

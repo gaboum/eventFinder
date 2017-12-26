@@ -13,11 +13,11 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 const DateTimeSet = props => {
-    const {defaultDate, defaultTime, context} = props;
+    const {defaultDate, defaultTime, context, onChange} = props;
     return (
         <div className="date-time-set">
-            <DatePicker defaultValue={defaultDate} disabledDate={(current, cont) => disabledDate(current, context)}/>
-            <TimePicker defaultValue={defaultTime} format="HH:mm"/>
+            <DatePicker onChange={onChange} defaultValue={defaultDate} disabledDate={(current, cont) => disabledDate(current, context)}/>
+            <TimePicker onChange={onChange} defaultValue={defaultTime} format="HH:mm"/>
         </div>
     )
 };

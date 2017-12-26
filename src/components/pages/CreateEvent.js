@@ -3,9 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {Field, reduxForm} from 'redux-form';
 import moment from 'moment';
-import { Editor } from '@tinymce/tinymce-react';
 import { Input } from 'antd';
 
 import DateTimeSet from '../DateTimeSet';
@@ -14,73 +12,112 @@ import Validator from '../../helpers/fieldValidator';
 
 
 
-const CreateForm = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
-    return (
-        <div className="create-event-container">
-            <form className="create-event__form" onSubmit={handleSubmit}>
-                <div className="create-event__fieldset">
-                    <label htmlFor="title">Event Title</label>
-                    <Field name="title" component={Input} type="text"/>
-                </div>
-                <div className="create-event__fieldset">
-                    <label htmlFor="location">Location</label>
-                    <Field name="location" component={Input} type="text" />
-                </div>
-                <div className="create-event__fieldset">
-                    <label htmlFor="start-date">Start Date</label>
-                    <Field
-                        name="start-date"
-                        component={DateTimeSet}
-                        context="today"
-                        defaultDate={moment()}
-                        defaultTime={moment()}
-                        type="text"
-                    />
-                </div>
-                <div className="create-event__fieldset">
-                    <label htmlFor="start-date">End Date</label>
-                    <Field
-                        name="end-date"
-                        component={DateTimeSet}
-                        context="today"
-                        defaultDate={moment()}
-                        defaultTime={moment()}
-                        type="text"
-                    />
-                </div>
-                <div className="create-event__fieldset">
-                    <Field name="picture" component={FileUpload}/>
-                </div>
-                <div className="create-event__fieldset">
-                    <Field name="picture" component={Editor}
-                           initialValue="<p>This is the initial content of the editor</p>"
-                           init={{
-                               plugins: 'link image code',
-                               toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
-                           }}/>
-                </div>
-                <div className="create-event__fieldset">
-                    <label htmlFor="title">Organizer Name</label>
-                    <Field name="organizer_name" component={Input} type="text" />
-                </div>
-                <button type="submit" disabled={submitting}>
-                    Submit
-                </button>
-            </form>
-        </div>
-    )
+class CreateForm extends React.Component{
+    state = {
+        touched : false,
+        title : {
+            value : '',
+            error : ''
+        },
+        location : {
+            value : '',
+            error : ''
+        },
+        startDate : {
+            value : '',
+            error : ''
+        },
+        endDate   : {
+            value : '',
+            error : ''
+        },
+        picture : {
+            value : '',
+            error : ''
+        },
+        description : {
+            value : '',
+            error : ''
+        },
+        organizerName : {
+            value : '',
+            error : ''
+        }
+
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const newState = Validator.validate(this.state);
+        this.setState({...newState, touched : true});
+    };
+
+
+    render(){
+        const { TextArea } = Input;
+        return (
+            <div className="create-event-container">
+                <form className="create-event__form" onSubmit={this.handleSubmit}>
+                    <div className="create-event__fieldset">
+                        <label htmlFor="title">Event Title</label>
+                        <Input name="title" type="text" onChange={(e) => this.setState({title:{value:e.target.value}})}/>
+                        {this.state.touched && this.state.title.error && <p className="error">{this.state.title.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <label htmlFor="location">Location</label>
+                        <Input name="location" type="text" onChange={e => {this.setState({location:{value:e.target.value}})}}/>
+                        {this.state.touched && this.state.location.error && <p className="error">{this.state.location.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <label htmlFor="start-date">Start Date</label>
+                        <DateTimeSet
+                            onChange={e => {this.setState({startDate:{value:e.format('DD:MM:YYYY')}})}}
+                            name="start-date"
+                            context="today"
+                            defaultDate={moment()}
+                            defaultTime={moment()}
+                            type="text"
+                        />
+                        {this.state.touched && this.state.startDate.error && <p className="error">{this.state.startDate.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <label htmlFor="start-date">End Date</label>
+                        <DateTimeSet
+                            onChange={e => {this.setState({endDate:{value:e.format('DD:MM:YYYY')}})}}
+                            name="end-date"
+                            context="today"
+                            defaultDate={moment()}
+                            defaultTime={moment()}
+                            type="text"
+                        />
+                        {this.state.touched && this.state.endDate.error && <p className="error">{this.state.endDate.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <FileUpload name="picture"  onChange={e => {this.setState({picture : {value: e}})}}/>
+                        {this.state.touched && this.state.picture.error && <p className="error">{this.state.picture.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <TextArea
+                            onChange={e => {this.setState({description:{value:e.target.value}})}}
+                            name="description"/>
+                        {this.state.touched && this.state.description.error && <p className="error">{this.state.description.error}</p>}
+                    </div>
+                    <div className="create-event__fieldset">
+                        <label htmlFor="title">Organizer Name</label>
+                        <Input
+                            name="organizer_name"
+                            type="text"
+                            onChange={e => {this.setState({organizerName : {value:e.target.value}})}} />
+                        {this.state.touched && this.state.organizerName.error &&
+                        <p className="error">{this.state.organizerName.error}</p>}
+                    </div>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        )
+    }
 }
 
-const validate = values => {
-    const errors = {};
-    if(!values.title){
-        errors.title = 'Title is required';
-    }
-};
-
-
-export default reduxForm({
-    form: 'create',
-    validate
-})(CreateForm);
+export default connect(undefined, undefined)(CreateForm)

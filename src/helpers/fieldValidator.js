@@ -5,10 +5,13 @@
 
 export default class FieldsValidator {
 
-    isRequired (value) {
-        if (value === '' || value === undefined || !value){
-            return false;
+    static validate (state) {
+        const newState = {...state};
+        for(let key in newState) {
+            if(newState[key].value === ''){
+                newState[key].error = 'This field is required'
+            }
         }
-        return true;
+        return newState;
     }
 }
