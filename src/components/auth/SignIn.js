@@ -31,7 +31,6 @@ const SignIn = props => {
 };
 
 const handleFormSubmit = e => {
-    e.preventDefault();
     console.log(e);
 };
 
@@ -75,4 +74,5 @@ const renderField = ({
 export default reduxForm({
     form: 'signIn',
     validate,
+    onSubmit : e => handleFormSubmit(e),
 })(SignIn)
