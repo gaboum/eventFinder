@@ -44,9 +44,4 @@ const disabledDate = (current, context) => {
 };
 
 
-/*DateTimeSet.propTypes = {
-    defaultTime : PropTypes.instanceOf(moment).isRequired,
-    defaultDate : PropTypes.instanceOf(moment).isRequired
-};*/
-
 export default DateTimeSet;

@@ -20,6 +20,7 @@
     "heroku-postbuild": "npm install"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^2.1.0",
     "antd": "^3.0.3",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
