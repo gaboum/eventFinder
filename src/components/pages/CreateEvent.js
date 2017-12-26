@@ -2,7 +2,6 @@
  * Created by HP on 23-Dec-17.
  */
 import React from 'react';
-import {connect} from 'react-redux';
 import moment from 'moment';
 import { Input } from 'antd';
 
@@ -11,7 +10,9 @@ import FileUpload from '../FileUpload';
 import Validator from '../../helpers/fieldValidator';
 
 
-
+/**
+ * Represents create event page
+ */
 class CreateForm extends React.Component{
     state = {
         touched : false,
@@ -46,6 +47,10 @@ class CreateForm extends React.Component{
 
     };
 
+    /**
+     * Custom validation of user's input
+     * @param e
+     */
     handleSubmit = e => {
         e.preventDefault();
         const newState = Validator.validate(this.state);
@@ -120,4 +125,4 @@ class CreateForm extends React.Component{
     }
 }
 
-export default connect(undefined, undefined)(CreateForm)
+export default CreateForm;
