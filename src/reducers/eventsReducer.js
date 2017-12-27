@@ -6,14 +6,14 @@ import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, REMOVE_FILTER, SAVE_EVENT} f
 const eventReducerDefaultState = {
     events : [],
     filteredEvents : [],
-    error  : '',
+    errors  : '',
     newEventSaved : false,
 };
 
 export default (state=eventReducerDefaultState, action) => {
     switch(action.type) {
         case SET_ERROR:
-            return {...state, error : action.error};
+            return {...state, errors : action.error};
         break;
         case SET_NEARBY:
             return {...state, events: action.events};
@@ -24,6 +24,7 @@ export default (state=eventReducerDefaultState, action) => {
             return {
                 ...state,
                 newEventSaved : true,
+                errors : ''
             };
             break;
         default:

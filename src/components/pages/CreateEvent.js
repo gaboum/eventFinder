@@ -119,6 +119,9 @@ class CreateForm extends React.Component{
                         {this.state.touched && this.state.organizerName.error &&
                         <p className="error">{this.state.organizerName.error}</p>}
                     </div>
+                    {this.props.submissionErrors && this.props.submissionErrors.map(err => {
+                        return <div className="error">{err}</div>
+                    })}
                     <button type="submit">
                         Submit
                     </button>
@@ -128,9 +131,13 @@ class CreateForm extends React.Component{
     }
 }
 
+const mapStateToProps = state => ({
+    submissionErrors : state.events.errors
+});
+
 const mapDispatchToProps = dispatch => ({
     saveEvent : event => dispatch(saveEvent(event))
 });
 
 
-export default connect(undefined, mapDispatchToProps)(CreateForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);

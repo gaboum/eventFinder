@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS} from './types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT} from './types';
 import ENV from '../../ENV';
 
 const ROOT_URL = ENV.eventbriteAPI.rootURL;
@@ -75,10 +75,10 @@ export const saveEvent = event => dispatch => {
         headers : { Authorization : localStorage.getItem('token')}
     })
         .then(resp => {
-            console.log(resp)
+            dispatch({type : SAVE_EVENT})
         })
         .catch(err => {
-            console.log(err)
+            dispatch(setError(err.response.data.errors))
         })
 };
 
