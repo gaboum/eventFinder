@@ -42,7 +42,7 @@ export const getUsersLocality = coord => dispatch => {
  * @param email
  * @param password
  */
-export const signUserIn = ({email, password}) => dispatch => {
+export const signUserIn = (email, password) => dispatch => {
     axios.post(`${ENV.backendServer.rootUrl}/signin`, { email, password })
         .then(resp => {
             if(resp.status === 200) {

@@ -2,15 +2,16 @@
  * Created by HP on 23-Dec-17.
  */
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
-import Validator from '../../helpers/fieldValidator';
+import { Field, reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
 
+import Validator from '../../helpers/fieldValidator';
 import {signUserIn} from '../../actions/userData';
 
 
 
 const SignIn = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
+    const { handleSubmit, pristine, reset, submitting, signIn } = props;
     return (
         <div className="signin-page">
             <form onSubmit={handleSubmit}>
@@ -32,9 +33,9 @@ const SignIn = props => {
     )
 };
 
-const handleFormSubmit = e => {
-    console.log(e);
-    signUserIn(e);
+const handleFormSubmit = (e, dispatch) => {
+    console.log(e.email, e.password)
+    dispatch(signUserIn(e.email, e.password))
 };
 
 const validate = values => {
@@ -73,9 +74,15 @@ const renderField = ({
 );
 
 
+/*const mapDispatchToProps = dispatch => ({
+    signIn : args => dispatch(signUserIn(args)),
+});
+
+const connectedSignInForm = connect(undefined, mapDispatchToProps)(SignIn);*/
+
 
 export default reduxForm({
     form: 'signIn',
     validate,
-    onSubmit : e => handleFormSubmit(e),
+    onSubmit : (e, dispatch) => handleFormSubmit(e, dispatch),
 })(SignIn)

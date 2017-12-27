@@ -30,7 +30,6 @@ export default (state=userDataReducerDefaultState, action) => {
             };
             break;
         case SIGN_USER_IN:
-            console.log('kdfj')
             return {
                 ...state,
                 authenticated : true,
@@ -39,7 +38,6 @@ export default (state=userDataReducerDefaultState, action) => {
             };
             break;
         case SET_AUTH_ERROR:
-            console.log('dkf')
             return {
                 ...state,
                 authErrors : action.error
