@@ -39,7 +39,7 @@ export default (state=userDataReducerDefaultState, action) => {
             return {
                 ...state,
                 authenticated : true,
-                jwtToken : action.token,
+                jwtToken : action.jwtToken,
                 authErrors : ''
             };
             break;
@@ -53,7 +53,7 @@ export default (state=userDataReducerDefaultState, action) => {
             return {
                 ...state,
                 authenticated : true,
-                jwtToken : action.token,
+                jwtToken : action.jwtToken,
                 authError : ''
             };
             break;

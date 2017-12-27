@@ -3,39 +3,57 @@
  */
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
 
 import Validator from '../../helpers/fieldValidator';
 import {signUserUp} from '../../actions/userData';
 
 
-const SignUp = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
-    return (
-        <div className="signup-page">
-            <form onSubmit={handleSubmit}>
-                <Field
-                    name="email"
-                    type="text"
-                    component={renderField}
-                    label="Email"
-                />
-                <Field
-                    name="password"
-                    type="password"
-                    component={renderField}
-                    label="password"
-                />
-                <Field
-                    name="passwordConfirm"
-                    type="password"
-                    component={renderField}
-                    label="password"
-                />
-                <button type="submit" disabled={submitting} className="btn btn-default">SignIN</button>
-            </form>
-        </div>
-    )
-};
+/**
+ * Represents signUp page
+ */
+class SignUp extends React.Component {
+
+    /**
+     * Redirect user after successful authorization
+     */
+    componentDidUpdate() {
+        if(this.props.authenticated) {
+            this.props.history.push('/');
+        }
+    }
+
+
+    render() {
+        const { handleSubmit, pristine, reset, submitting } = this.props;
+        return (
+            <div className="signup-page">
+                <form onSubmit={handleSubmit}>
+                    <Field
+                        name="email"
+                        type="text"
+                        component={renderField}
+                        label="Email"
+                    />
+                    <Field
+                        name="password"
+                        type="password"
+                        component={renderField}
+                        label="password"
+                    />
+                    <Field
+                        name="passwordConfirm"
+                        type="password"
+                        component={renderField}
+                        label="password"
+                    />
+                    <button type="submit" disabled={submitting} className="btn btn-default">SignUp</button>
+                    {this.props.authErrors && <p>{this.props.authErrors}</p>}
+                </form>
+            </div>
+        )
+    }
+}
 
 const handleFormSubmit = (e, dispatch) => {
     dispatch(signUserUp(e));
@@ -84,10 +102,17 @@ const renderField = ({
     </div>
 );
 
+const mapStateToProps = state =>({
+    authenticated : state.userData.authenticated,
+    authErrors    : state.userData.authErrors
+});
+
+
+const connectedFrom = connect(mapStateToProps, undefined)(SignUp);
 
 
 export default reduxForm({
     form: 'signUp',
     validate,
     onSubmit : (e, dispatch) => handleFormSubmit(e, dispatch),
-})(SignUp)
+})(connectedFrom);
