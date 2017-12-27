@@ -1,7 +1,7 @@
 /**
  * Created by HP on 25-Dec-17.
  */
-import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR} from './types';
+import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR, SIGN_USER_OUT} from './types';
 import {setError} from './events'
 import ENV from '../../ENV';
 
@@ -19,6 +19,15 @@ export const setUserLocation = location => ({
 });
 
 
+/**
+ * Signs user out (sets authenticated flag to false and removes JWT token from local storage)
+ */
+export const signUserOut = () => {
+    localStorage.removeItem('token');
+    return {
+        type : SIGN_USER_OUT,
+    }
+};
 
 
 

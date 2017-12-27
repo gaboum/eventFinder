@@ -17,12 +17,21 @@ export const Header = (props) => (
                     <li className="nav-item">
                         <NavLink activeClassName="active" className="nav-link" to="/create">Create</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="/signup">SignUp</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="/signin">SignIn</NavLink>
-                    </li>
+                    {props.authenticated
+                    ?
+                        <li className="nav-item">
+                            <NavLink activeClassName="active" className="nav-link" to="/signout">Sign OUT</NavLink>
+                        </li>
+                    :
+                        [
+                            <li className="nav-item">
+                                <NavLink activeClassName="active" className="nav-link" to="/signup">Sign Up</NavLink>
+                            </li>,
+                            <li className="nav-item">
+                                <NavLink activeClassName="active" className="nav-link" to="/signin">Sign In</NavLink>
+                            </li>
+                        ]
+                    }
                 </ul>
             </div>
         </nav>
@@ -30,7 +39,7 @@ export const Header = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-    fuzz : 'buzz'
+    authenticated : state.userData.authenticated
 });
 
-export default connect(undefined, undefined)(Header);
+export default connect(mapStateToProps, undefined)(Header);

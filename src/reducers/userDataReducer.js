@@ -8,6 +8,7 @@ import {
     SIGN_USER_IN,
     SET_AUTH_ERROR,
     SIGN_USER_UP,
+    SIGN_USER_OUT
 } from '../actions/types';
 
 const userDataReducerDefaultState = {
@@ -55,6 +56,12 @@ export default (state=userDataReducerDefaultState, action) => {
                 authenticated : true,
                 jwtToken : action.jwtToken,
                 authError : ''
+            };
+            break;
+        case SIGN_USER_OUT:
+            return {
+                ...state,
+                authenticated : false
             };
             break;
         default:

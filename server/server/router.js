@@ -16,4 +16,7 @@ module.exports = function (app) {
     });
     app.post('/signup', AuthController.signUp);
     app.post('/signin', requireSigninMiddleware, AuthController.signIn);
+    app.post('/event-save', requireAuthMiddleware, function (req, res) {
+        res.send({message:  'eventcreated'})
+    })
 };

@@ -66,6 +66,22 @@ export const getFilteredEvents = (props = {}) =>   {
     }
 };
 
+/**
+ * Saves a user's event to the database (not eventbrite, it's own database)
+ * @param event
+ */
+export const saveEvent = event => dispatch => {
+    axios.post(`${ENV.backendServer.rootUrl}/event-save`, {
+        headers : {Authorization : localStorage.getItem('token')}
+    })
+        .then(resp => {
+            console.log(resp)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+};
+
 
 
 /**
@@ -77,6 +93,9 @@ export const setError = (error) => ({
     error
 });
 
+
+
+
 /**
  * Fills events property of the store with events obtained via AJAX in getEvents()
  * @param events
@@ -85,6 +104,8 @@ export const setNearby = (events) =>({
     type : SET_NEARBY,
     events
 });
+
+
 
 /**
  * Adjasts timestamp to the format which is required by eventbrite API

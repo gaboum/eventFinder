@@ -1,12 +1,13 @@
 /**
  * Created by HP on 23-Dec-17.
  */
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, REMOVE_FILTER} from '../actions/types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, REMOVE_FILTER, SAVE_EVENT} from '../actions/types';
 
 const eventReducerDefaultState = {
     events : [],
     filteredEvents : [],
     error  : '',
+    newEventSaved : false,
 };
 
 export default (state=eventReducerDefaultState, action) => {
@@ -18,6 +19,13 @@ export default (state=eventReducerDefaultState, action) => {
             return {...state, events: action.events};
         case SET_FILTERED_EVENTS:
             return {...state, filteredEvents: action.events};
+            break;
+        case SAVE_EVENT:
+            return {
+                ...state,
+                newEventSaved : true,
+            };
+            break;
         default:
             return state;
     }

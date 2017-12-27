@@ -4,6 +4,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Input } from 'antd';
+import {connect} from 'react-redux';
+import {saveEvent} from '../../actions/events';
 
 import DateTimeSet from '../DateTimeSet';
 import FileUpload from '../FileUpload';
@@ -55,6 +57,7 @@ class CreateForm extends React.Component{
         e.preventDefault();
         const newState = Validator.validate(this.state);
         this.setState({...newState, touched : true});
+        if(!newState.hasErrors) this.props.saveEvent(newState);
     };
 
 
@@ -125,4 +128,9 @@ class CreateForm extends React.Component{
     }
 }
 
-export default CreateForm;
+const mapDispatchToProps = dispatch => ({
+    saveEvent : event => dispatch(saveEvent(event))
+});
+
+
+export default connect(undefined, mapDispatchToProps)(CreateForm);
