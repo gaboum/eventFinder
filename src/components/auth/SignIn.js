@@ -33,8 +33,12 @@ const SignIn = props => {
     )
 };
 
+/**
+ * Dispatch signing in action
+ * @param e
+ * @param dispatch
+ */
 const handleFormSubmit = (e, dispatch) => {
-    console.log(e.email, e.password)
     dispatch(signUserIn(e.email, e.password))
 };
 
@@ -74,13 +78,9 @@ const renderField = ({
 );
 
 
-/*const mapDispatchToProps = dispatch => ({
-    signIn : args => dispatch(signUserIn(args)),
-});
-
-const connectedSignInForm = connect(undefined, mapDispatchToProps)(SignIn);*/
-
-
+/**
+ * Redux form HOC
+ */
 export default reduxForm({
     form: 'signIn',
     validate,

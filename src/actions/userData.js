@@ -46,6 +46,7 @@ export const signUserIn = (email, password) => dispatch => {
     axios.post(`${ENV.backendServer.rootUrl}/signin`, { email, password })
         .then(resp => {
             if(resp.status === 200) {
+                localStorage.setItem('token', resp.data.token);
                 dispatch({
                     type : SIGN_USER_IN,
                     jwtToken : resp.data.token
@@ -62,6 +63,40 @@ export const signUserIn = (email, password) => dispatch => {
                 dispatch({
                     type  : SET_AUTH_ERROR,
                     error : 'Ooops! Something went wrong, please try again'
+                })
+            }
+        });
+};
+
+
+
+
+/**
+ * Signs user up via email and password
+ * @param email
+ * @param password
+ */
+export const signUserUp = ({email, password}) => dispatch =>  {
+    axios.post(`${ENV.backendServer.rootUrl}/signup`, {email, password})
+        .then(resp => {
+            if(resp.status === 200) {
+                localStorage.setItem('token', resp.data.token);
+                dispatch({
+                    type : SIGN_USER_IN,
+                    jwtToken : resp.data.token
+                })
+            }
+        })
+        .catch(err => {
+            if (err.response.status === 422) {
+                dispatch({
+                    type  : SET_AUTH_ERROR,
+                    error : 'It looks like this email is already in use'
+                })
+            } else {
+                dispatch({
+                    type  : SET_AUTH_ERROR,
+                    error : err.response.data.error
                 })
             }
         });

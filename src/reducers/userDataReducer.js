@@ -2,7 +2,13 @@
  * Created by HP on 25-Dec-17.
  */
 import {} from '../actions/userData';
-import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR} from '../actions/types';
+import {
+    SET_USER_LOCATION,
+    SET_USER_LOCALITY,
+    SIGN_USER_IN,
+    SET_AUTH_ERROR,
+    SIGN_USER_UP,
+} from '../actions/types';
 
 const userDataReducerDefaultState = {
     location : {},
@@ -42,6 +48,15 @@ export default (state=userDataReducerDefaultState, action) => {
                 ...state,
                 authErrors : action.error
             };
+            break;
+        case SIGN_USER_UP:
+            return {
+                ...state,
+                authenticated : true,
+                jwtToken : action.token,
+                authError : ''
+            };
+            break;
         default:
             return state;
     }

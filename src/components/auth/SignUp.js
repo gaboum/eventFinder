@@ -2,8 +2,10 @@
  * Created by HP on 23-Dec-17.
  */
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
+
 import Validator from '../../helpers/fieldValidator';
+import {signUserUp} from '../../actions/userData';
 
 
 const SignUp = props => {
@@ -35,8 +37,8 @@ const SignUp = props => {
     )
 };
 
-const handleFormSubmit = e => {
-    console.log(e);
+const handleFormSubmit = (e, dispatch) => {
+    dispatch(signUserUp(e));
 };
 
 /**
@@ -87,5 +89,5 @@ const renderField = ({
 export default reduxForm({
     form: 'signUp',
     validate,
-    onSubmit : e => handleFormSubmit(e),
+    onSubmit : (e, dispatch) => handleFormSubmit(e, dispatch),
 })(SignUp)
