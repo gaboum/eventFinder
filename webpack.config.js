@@ -31,6 +31,9 @@ module.exports = (env) => {
                             options : {
                                 sourceMap : true
                             }
+                        },
+                        {
+                            loader: "jshint-loader"
                         }
                     ]
                 })
