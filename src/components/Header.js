@@ -24,10 +24,10 @@ export const Header = (props) => (
                         </li>
                     :
                         [
-                            <li className="nav-item">
+                            <li className="nav-item" key="1">
                                 <NavLink activeClassName="active" className="nav-link" to="/signup">Sign Up</NavLink>
                             </li>,
-                            <li className="nav-item">
+                            <li className="nav-item" key="2">
                                 <NavLink activeClassName="active" className="nav-link" to="/signin">Sign In</NavLink>
                             </li>
                         ]

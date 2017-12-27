@@ -71,8 +71,8 @@ export const getFilteredEvents = (props = {}) =>   {
  * @param event
  */
 export const saveEvent = event => dispatch => {
-    axios.post(`${ENV.backendServer.rootUrl}/event-save`, {
-        headers : {Authorization : localStorage.getItem('token')}
+    axios.post(`${ENV.backendServer.rootUrl}/event-save`,{}, {
+        headers : { Authorization : localStorage.getItem('token')}
     })
         .then(resp => {
             console.log(resp)
