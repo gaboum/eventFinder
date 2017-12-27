@@ -23,7 +23,7 @@ export default (state=eventReducerDefaultState, action) => {
         case SAVE_EVENT:
             return {
                 ...state,
-                newEventSaved : true,
+                newEventSaved : !state.newEventSaved,
                 errors : ''
             };
             break;

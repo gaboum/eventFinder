@@ -70,10 +70,20 @@ export const getFilteredEvents = (props = {}) =>   {
  * Saves a user's event to the database (not eventbrite, it's own database)
  * @param event
  */
-export const saveEvent = event => dispatch => {
-    axios.post(`${ENV.backendServer.rootUrl}/event-save`,{}, {
-        headers : { Authorization : localStorage.getItem('token')}
-    })
+export const saveEvent = ({title, location, startDate, endDate,picture, description, organizerName}) => dispatch => {
+    axios.post(`${ENV.backendServer.rootUrl}/event-save`,
+        {
+            title : title.value,
+            location : location.value,
+            startDate : startDate.value,
+            endDate : endDate.value,
+            picture : picture.value,
+            description : description.value,
+            organizerName : description.value
+        },
+        {
+            headers : { Authorization : localStorage.getItem('token')}
+        })
         .then(resp => {
             dispatch({type : SAVE_EVENT})
         })

@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
  */
 
 const eventSchema = new Schema({
-    title : String,
+    title : {type : String, unique : true, lowercase: true},
     location : String,
     startDate : String,
     photoPath : String,

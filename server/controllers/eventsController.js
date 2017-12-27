@@ -12,6 +12,8 @@ exports.saveEvent = function(req, res, next) {
     const description = req.body.description;
     const organizerName = req.body.organizerName;
 
+    //console.log(req.body);
+
     const submissionErrors = [];
 
     if (!title) submissionErrors.push('You must provide title for your event');
