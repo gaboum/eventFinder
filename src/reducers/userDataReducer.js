@@ -2,11 +2,14 @@
  * Created by HP on 25-Dec-17.
  */
 import {} from '../actions/userData';
-import {SET_USER_LOCATION, SET_USER_LOCALITY} from '../actions/types';
+import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR} from '../actions/types';
 
 const userDataReducerDefaultState = {
     location : {},
-    locality : ''
+    locality : '',
+    authenticated : false,
+    jwtToken : '',
+    authErrors : ''
 };
 
 export default (state=userDataReducerDefaultState, action) => {
@@ -26,6 +29,21 @@ export default (state=userDataReducerDefaultState, action) => {
                 locality : action.locality
             };
             break;
+        case SIGN_USER_IN:
+            console.log('kdfj')
+            return {
+                ...state,
+                authenticated : true,
+                jwtToken : action.token,
+                authErrors : ''
+            };
+            break;
+        case SET_AUTH_ERROR:
+            console.log('dkf')
+            return {
+                ...state,
+                authErrors : action.error
+            };
         default:
             return state;
     }

@@ -7,6 +7,7 @@ export const SET_NEARBY          = 'SET_NEARBY';
 export const SET_FILTERED_EVENTS = 'SET_FILTERED_EVENTS';
 
 
+
 // FILTERS ACTIONS
 export const SET_LOCATION        = 'SET_LOCATION';
 export const SET_CATEGORY        = 'SET_CATEGORY';
@@ -23,7 +24,11 @@ export const SET_THIS_MONTH      = 'SET_THIS_MONTH';
 export const GET_CATEGORIES      = 'GET_CATEGORIES';
 export const REMOVE_FILTER       = 'REMOVE_FILTER';
 
+
+
 // USER DATA ACTIONS
 export const SET_USER_LOCATION   = 'SET_USER_LOCATION';
 export const SET_USER_LOCALITY   = 'SET_USER_LOCALITY';
+export const SIGN_USER_IN        = 'SIGN_USER_IN';
+export const SET_AUTH_ERROR      = 'SET_AUTH_ERROR';
 

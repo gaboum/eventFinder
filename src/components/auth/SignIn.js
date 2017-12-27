@@ -5,6 +5,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import Validator from '../../helpers/fieldValidator';
 
+import {signUserIn} from '../../actions/userData';
+
 
 
 const SignIn = props => {
@@ -32,6 +34,7 @@ const SignIn = props => {
 
 const handleFormSubmit = e => {
     console.log(e);
+    signUserIn(e);
 };
 
 const validate = values => {
