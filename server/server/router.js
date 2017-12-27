@@ -2,6 +2,7 @@
  * Created by HP on 20-Dec-17.
  */
 const AuthController = require('../controllers/authController');
+const EventsController = require('../controllers/eventsController');
 const passportService = require('./services/passport');
 const passport = require('passport');
 
@@ -16,7 +17,5 @@ module.exports = function (app) {
     });
     app.post('/signup', AuthController.signUp);
     app.post('/signin', requireSigninMiddleware, AuthController.signIn);
-    app.post('/event-save', requireAuthMiddleware, function (req, res) {
-        res.send({message:  'eventcreated'})
-    })
+    app.post('/event-save', requireAuthMiddleware, EventsController.saveEvent);
 };
