@@ -2,6 +2,8 @@
   "undef": true,
   "unused": true,
   "globals": {
-    "MY_GLOBAL": true
+    "MY_GLOBAL": false
   }
 }
+
+// I need to make some changes to the code to test pull-requests
