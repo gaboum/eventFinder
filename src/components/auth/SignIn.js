@@ -2,38 +2,70 @@
  * Created by HP on 23-Dec-17.
  */
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
+
 import Validator from '../../helpers/fieldValidator';
+import {signUserIn} from '../../actions/userData';
 
 
 
-const SignIn = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
-    return (
-        <div className="signin-page">
-            <form onSubmit={handleSubmit}>
-                <Field
-                    name="email"
-                    type="text"
-                    component={renderField}
-                    label="Email"
-                />
-                <Field
-                    name="password"
-                    type="password"
-                    component={renderField}
-                    label="password"
-                />
-                <button type="submit" disabled={submitting} className="btn btn-default">SignIN</button>
-            </form>
-        </div>
-    )
+
+/**
+ * Represents sign in form
+ */
+class SignIn extends React.Component {
+
+    /**
+     * Redirect user after successful authorization
+     */
+    componentDidUpdate() {
+        if(this.props.authenticated) {
+            this.props.history.push('/');
+        }
+    }
+
+
+    render (){
+        const { handleSubmit, pristine, reset, submitting } = this.props;
+        return (
+            <div className="signin-page">
+                <form onSubmit={handleSubmit}>
+                    <Field
+                        name="email"
+                        type="text"
+                        component={renderField}
+                        label="Email"
+                    />
+                    <Field
+                        name="password"
+                        type="password"
+                        component={renderField}
+                        label="password"
+                    />
+                    <button type="submit" disabled={submitting} className="btn btn-default">SignIN</button>
+                    {this.props.authErrors && <p>{this.props.authErrors}</p>}
+                </form>
+            </div>
+        )
+    }
+}
+
+/**
+ * Dispatch signing in action
+ * @param e
+ * @param dispatch
+ */
+const handleFormSubmit = (e, dispatch) => {
+    dispatch(signUserIn(e.email, e.password))
 };
 
-const handleFormSubmit = e => {
-    console.log(e);
-};
 
+/**
+ * Validation of users input
+ * @param values
+ * @returns {{}}
+ */
 const validate = values => {
     const errors = {};
     if (!Validator.isRequired(values.email)) errors.email = 'Please enter your email';
@@ -69,10 +101,18 @@ const renderField = ({
     </div>
 );
 
+const mapStateToProps = state =>({
+    authenticated : state.userData.authenticated,
+    authErrors    : state.userData.authErrors
+});
 
+const connectedForm = connect(mapStateToProps, undefined)(SignIn);
 
+/**
+ * Redux form HOC
+ */
 export default reduxForm({
     form: 'signIn',
     validate,
-    onSubmit : e => handleFormSubmit(e),
-})(SignIn)
+    onSubmit : (e, dispatch) => handleFormSubmit(e, dispatch),
+})(connectedForm)

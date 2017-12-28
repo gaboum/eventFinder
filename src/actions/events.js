@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS} from './types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT} from './types';
 import ENV from '../../ENV';
 
 const ROOT_URL = ENV.eventbriteAPI.rootURL;
@@ -66,6 +66,32 @@ export const getFilteredEvents = (props = {}) =>   {
     }
 };
 
+/**
+ * Saves a user's event to the database (not eventbrite, it's own database)
+ * @param event
+ */
+export const saveEvent = ({title, location, startDate, endDate,picture, description, organizerName}) => dispatch => {
+    axios.post(`${ENV.backendServer.rootUrl}/event-save`,
+        {
+            title : title.value,
+            location : location.value,
+            startDate : startDate.value,
+            endDate : endDate.value,
+            picture : picture.value,
+            description : description.value,
+            organizerName : description.value
+        },
+        {
+            headers : { Authorization : localStorage.getItem('token')}
+        })
+        .then(resp => {
+            dispatch({type : SAVE_EVENT})
+        })
+        .catch(err => {
+            dispatch(setError(err.response.data.errors))
+        })
+};
+
 
 
 /**
@@ -77,6 +103,9 @@ export const setError = (error) => ({
     error
 });
 
+
+
+
 /**
  * Fills events property of the store with events obtained via AJAX in getEvents()
  * @param events
@@ -85,6 +114,8 @@ export const setNearby = (events) =>({
     type : SET_NEARBY,
     events
 });
+
+
 
 /**
  * Adjasts timestamp to the format which is required by eventbrite API

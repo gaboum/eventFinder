@@ -4,6 +4,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Input } from 'antd';
+import {connect} from 'react-redux';
+import {saveEvent} from '../../actions/events';
 
 import DateTimeSet from '../DateTimeSet';
 import FileUpload from '../FileUpload';
@@ -55,7 +57,17 @@ class CreateForm extends React.Component{
         e.preventDefault();
         const newState = Validator.validate(this.state);
         this.setState({...newState, touched : true});
+        if(!newState.hasErrors) this.props.saveEvent(newState);
     };
+
+
+    /**
+     * Checks whether flag on a new event saving was changed and redirect user to homepage if it was
+     * @param nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.newEventSaved != this.props.newEventSaved) this.props.history.push('/');
+    }
 
 
     render(){
@@ -116,6 +128,9 @@ class CreateForm extends React.Component{
                         {this.state.touched && this.state.organizerName.error &&
                         <p className="error">{this.state.organizerName.error}</p>}
                     </div>
+                    {this.props.submissionErrors && this.props.submissionErrors.map((err, i) => {
+                        return <div className="error" key={i}>{err}</div>
+                    })}
                     <button type="submit">
                         Submit
                     </button>
@@ -125,4 +140,14 @@ class CreateForm extends React.Component{
     }
 }
 
-export default CreateForm;
+const mapStateToProps = state => ({
+    submissionErrors : state.events.errors,
+    newEventSaved : state.events.newEventSaved
+});
+
+const mapDispatchToProps = dispatch => ({
+    saveEvent : event => dispatch(saveEvent(event))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);

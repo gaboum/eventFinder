@@ -14,9 +14,11 @@ export default class FieldsValidator {
      */
     static validate = state => {
         const newState = {...state};
+        newState['hasErrors'] = false;
         for(let key in newState) {
             if(newState[key].value === ''){
-                newState[key].error = 'This field is required'
+                newState[key].error = 'This field is required';
+                newState['hasErrors'] = true;
             }
         }
         return newState;

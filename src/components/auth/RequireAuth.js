@@ -13,16 +13,12 @@ import {connect} from 'react-redux';
 export default (ComposedComponent) => {
     class Authentication extends React.Component {
 
-        /*static contextTypes = {
-            router : React.PropTypes.object,
-        };*/
-
         /**
          * If user isn't authenticated, redirect him on component mount
          */
         componentWillMount() {
             if(!this.props.authenticated) {
-                this.props.history.push('/');
+                this.props.history.push('/signin');
             }
         }
 
@@ -32,7 +28,7 @@ export default (ComposedComponent) => {
          */
         componentWillUpdate(nextProps) {
             if(!nextProps.authenticated) {
-                this.props.history.push('/');
+                this.props.history.push('/signin');
             }
         }
 
@@ -46,7 +42,7 @@ export default (ComposedComponent) => {
     }
 
     const mapStateToProps = state => ({
-        authenticated : true
+        authenticated : state.userData.authenticated
     });
 
 
