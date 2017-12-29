@@ -13,7 +13,7 @@ const Event = props => {
             <Link className="event__link" to={`/event/${id}`}>
                 <div className="event__picture-container card-body">
                     <img src={logo && logo.url} className="event__picture"/>
-                    {is_free && <div className="event__price-type">{is_free ? 'FREE' : ''}</div>}
+                    {is_free && <div className="event__price-type">FREE</div>}
                 </div>
                 <div className="event__info-container card-body">
                     <div className="event__date">{start && start.local}</div>
