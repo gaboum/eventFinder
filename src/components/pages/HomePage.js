@@ -9,8 +9,8 @@ import BackgroundSlideshow from 'react-background-slideshow'
 import {getEvents, setError} from '../../actions/events';
 import SearchForm from '../SearchForm';
 import Event from '../Event';
-import img1 from '../../../public/img/ticket.jpg';
-import img2 from '../../../public/img/concert.jpg';
+import img1 from '../../assets/img/ticket.jpg';
+import img2 from '../../assets/img/concert.jpg';
 
 
 class HomePage extends React.Component {
@@ -38,12 +38,12 @@ class HomePage extends React.Component {
         return(
             <div className="homepage container=fluid">
                 <section className="homepage__slider">
-                    <BackgroundSlideshow images={[ img1, img2 ]} disableClick={() => false} disableInterval={() => false} />
+                    <img src={img1}/>
                 </section>
                 <section className="homepage__searchform">
                     <SearchForm/>
                 </section>
-                <div className="col-md-12">
+                <div className="homepage__events">
                     {this.props.events.map(event => <Event key={event.id} event={event}/>)}
                 </div>
             </div>

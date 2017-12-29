@@ -12,11 +12,22 @@ module.exports = (env) => {
             filename: 'bundle.js'
         },
         module: {
-            rules: [{
-                loader: 'babel-loader',
-                test: /\.js$/,
-                exclude: /node_modules/
-            }, {
+                rules: [{
+                     loader: 'babel-loader',
+                     test: /\.js$/,
+                     exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|jp(e*)g|svg)$/,
+                    use: [{
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8000, // Convert images < 8kb to base64 strings
+                            name: 'images/[hash]-[name].[ext]'
+                        }
+                    }]
+                },
+                {
                 test: /\.s?css$/,
                 use: CSSExtract.extract({
                     use : [
@@ -38,13 +49,7 @@ module.exports = (env) => {
                     ]
                 })
 
-            },{
-                test: /\.(gif|png|jpe?g|svg|webp)$/i,
-                loaders: [
-                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack-loader'
-                ]
-            }
+            },
             ]
         },
         plugins : [
