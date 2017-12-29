@@ -7,8 +7,14 @@
   input {
     flex: 1 3 70%;
     height: 5rem;
+    &::-webkit-input-placeholder{
+      font-size: $l-size;
+    }
   }
+
   button {
-    flex: 1 1 30%
+    flex: 1 1 30%;
+    font-size: $l-size;
+    font-weight: 100;
   }
 }

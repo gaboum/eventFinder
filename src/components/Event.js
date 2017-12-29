@@ -9,18 +9,18 @@ const Event = props => {
     const {is_free, start, name, logo, description, end, id} = props.event;
 
     return (
-        <div className="event">
+        <div className="event card mb-3">
             <Link className="event__link" to={`/event/${id}`}>
-                <div className="event__picture-container">
+                <div className="event__picture-container card-body">
                     <img src={logo && logo.url} className="event__picture"/>
-                    <div className="event__price-type">{is_free ? 'FREE' : ''}</div>
+                    {is_free && <div className="event__price-type">{is_free ? 'FREE' : ''}</div>}
                 </div>
-                <div className="event__info-container">
+                <div className="event__info-container card-body">
                     <div className="event__date">{start && start.local}</div>
                     <div className="event__title">{name && name.text}</div>
                     <div className="event__description">{description.text ? description.text.substring(0, 100) + '..' : ''}</div>
                 </div>
-                <div className="event__footer">
+                <div className="event__footer card-footer">
                     <div className="event__tags">{end && end.timezone}</div>
                     <div className="event__save"></div>
                 </div>
