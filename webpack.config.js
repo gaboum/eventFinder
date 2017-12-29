@@ -38,7 +38,14 @@ module.exports = (env) => {
                     ]
                 })
 
-            }]
+            },{
+                test: /\.(gif|png|jpe?g|svg|webp)$/i,
+                loaders: [
+                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack-loader'
+                ]
+            }
+            ]
         },
         plugins : [
             CSSExtract,

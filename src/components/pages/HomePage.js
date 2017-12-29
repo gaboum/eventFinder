@@ -4,10 +4,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import BackgroundSlideshow from 'react-background-slideshow'
 
 import {getEvents, setError} from '../../actions/events';
 import SearchForm from '../SearchForm';
 import Event from '../Event';
+import img1 from '../../../public/img/ticket.jpg';
+import img2 from '../../../public/img/concert.jpg';
 
 
 class HomePage extends React.Component {
@@ -34,16 +37,14 @@ class HomePage extends React.Component {
     render(){
         return(
             <div className="homepage container=fluid">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1>Home Page</h1>
-                        <SearchForm/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        {this.props.events.map(event => <Event key={event.id} event={event}/>)}
-                    </div>
+                <section className="homepage__slider">
+                    <BackgroundSlideshow images={[ img1, img2 ]} disableClick={() => false} disableInterval={() => false} />
+                </section>
+                <section className="homepage__searchform">
+                    <SearchForm/>
+                </section>
+                <div className="col-md-12">
+                    {this.props.events.map(event => <Event key={event.id} event={event}/>)}
                 </div>
             </div>
         )
