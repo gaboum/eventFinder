@@ -11,6 +11,7 @@ import Event from '../Event';
 import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
 import {filtersAreSame} from '../../helpers/compareFilters';
+import Loading from '../loading';
 
 
 
@@ -51,15 +52,21 @@ class Browse extends React.Component {
                         </div>
                         <div className="col-md-9">
                             <FiltersBar/>
-                            {this.props.events.map(ev => {
-                                return <Event
-                                    key={ev.id}
-                                    event={ev}
-                                />
-                            })}
+                            {this.props.events.length
+                                ?
+                                this.props.events.map(ev => {
+                                    return <Event
+                                        key={ev.id}
+                                        event={ev}
+                                    />
+                                })
+                                :
+                                <Loading/>
+                            }
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }
