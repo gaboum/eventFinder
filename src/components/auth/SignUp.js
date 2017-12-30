@@ -28,26 +28,29 @@ class SignUp extends React.Component {
         const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
             <div className="signup-page">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="signup-page__form">
                     <Field
                         name="email"
                         type="text"
                         component={renderField}
-                        label="Email"
+                        placeholder="Email"
+                        className="form-control"
                     />
                     <Field
                         name="password"
                         type="password"
                         component={renderField}
-                        label="password"
+                        placeholder="Password"
+                        className="form-control"
                     />
                     <Field
                         name="passwordConfirm"
                         type="password"
                         component={renderField}
-                        label="password"
+                        placeholder="Password Confirmation"
+                        className="form-control"
                     />
-                    <button type="submit" disabled={submitting} className="btn btn-default">SignUp</button>
+                    <button type="submit" disabled={submitting} className="btn btn-danger signup_button">SignUp</button>
                     {this.props.authErrors && <p>{this.props.authErrors}</p>}
                 </form>
             </div>
@@ -89,14 +92,16 @@ const renderField = ({
     input,
     label,
     type,
+    placeholder,
+    className,
     meta: { touched, error, warning }
 }) => (
     <div>
         <label>{label}</label>
         <div>
-            <input {...input} placeholder={label} type={type} />
+            <input {...input} placeholder={placeholder} className={className} type={type} />
             {touched &&
-            ((error && <span>{error}</span>) ||
+            ((error && <span className="error">{error}</span>) ||
             (warning && <span>{warning}</span>))}
         </div>
     </div>
