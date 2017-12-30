@@ -4,6 +4,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
+import {CSSTransitionGroup} from 'react-transition-group';
 
 import FiltersForm from '../FiltersForm';
 import FiltersBar from '../FiltersBar';
@@ -12,6 +13,7 @@ import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
 import {filtersAreSame} from '../../helpers/compareFilters';
 import Loading from '../loading';
+
 
 
 
@@ -54,12 +56,19 @@ class Browse extends React.Component {
                             <FiltersBar/>
                             {this.props.events.length
                                 ?
-                                this.props.events.map(ev => {
-                                    return <Event
-                                        key={ev.id}
-                                        event={ev}
-                                    />
-                                })
+                                <CSSTransitionGroup
+                                    transitionName="mount-animation"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={500}
+                                    transitionEnter={false}
+                                    transitionLeave={false}>
+                                    {this.props.events.map(ev => {
+                                        return <Event
+                                            key={ev.id}
+                                            event={ev}
+                                        />
+                                    })}
+                                </CSSTransitionGroup>
                                 :
                                 <Loading/>
                             }
