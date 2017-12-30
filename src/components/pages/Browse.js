@@ -48,19 +48,16 @@ class Browse extends React.Component {
         const events = this.props.events.map(ev => <Event key={ev.id}  event={ev}  />);
 
         return(
-            <div className="browse-page">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-3">
-                            <FiltersForm/>
-                        </div>
-                        <div className="col-md-9">
-                            <FiltersBar/>
-                            {LoadingOrElements(events, this.props.events.length)}
-                        </div>
+            <div className="container-fluid browse-page">
+                <div className="browse-page__filter-form">
+                    <FiltersForm/>
+                </div>
+                <div className="browse-page__events">
+                    <FiltersBar/>
+                    <div className="browse--page__events-container">
+                        {LoadingOrElements(events, this.props.events.length)}
                     </div>
                 </div>
-
             </div>
         )
     }

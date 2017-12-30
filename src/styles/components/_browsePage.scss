@@ -1,0 +1,20 @@
+@import '../base/mixins';
+@import '../base/settings';
+
+.browse-page {
+  @include display-flex;
+}
+
+.browse-page__filter-form {
+  flex: 1 1 calc(23% - 5rem);
+  margin-right:5rem;
+}
+
+.browse-page__events {
+  flex: 1 1 77%;
+}
+
+.browse--page__events-container > span {
+  @include display-flex(flex-start, true);
+  width: 100%;
+}
