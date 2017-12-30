@@ -11,8 +11,9 @@
 }
 
 // a base template for a section
-@mixin section ($flex:false, $margin:$section_margin, $padding:$section_padding, $background:white) {
+@mixin section ($flex:false, $margin:$section_margin, $padding:$section_padding, $background:white, $justify:flex-start) {
   display: if($flex, flex, block);
+  justify-content:$justify;
   background: $background;
   padding : $padding;
   flex-wrap: wrap;

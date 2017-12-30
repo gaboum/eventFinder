@@ -23,7 +23,9 @@ class SignOut extends React.Component {
 
     render() {
         return (
-            <h1>Sory to see you go</h1>
+            <div className="signout">
+                <h1 className="signout__heading">Sory to see you go</h1>
+            </div>
         )
     }
 }

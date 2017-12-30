@@ -128,7 +128,7 @@ class CreateForm extends React.Component{
                         {this.state.touched && this.state.organizerName.error &&
                         <p className="error">{this.state.organizerName.error}</p>}
                     </div>
-                    {this.props.submissionErrors && this.props.submissionErrors.map((err, i) => {
+                    {this.props.submissionErrors.length && this.props.submissionErrors.map((err, i) => {
                         return <div className="error" key={i}>{err}</div>
                     })}
                     <button type="submit">

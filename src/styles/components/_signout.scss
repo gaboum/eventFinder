@@ -1,0 +1,8 @@
+@import '../base/settings';
+@import '../base/mixins';
+
+.signout {
+  @include section(true, 5rem, 2rem, $justify:center);
+  align-items: center;
+  min-height: 40vh;
+}
