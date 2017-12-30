@@ -52,7 +52,7 @@ class FiltersForm extends LinkedComponent {
     handleClick (tab) {
         this.setState(oldState => ({
             activeTab : oldState.activeTab.map((t,i) => {
-                return i === tab ? !oldState.activeTab[i] : oldState.activeTab[i];
+                return i === tab ? !oldState.activeTab[i] : false;
             })
         }))
     }
