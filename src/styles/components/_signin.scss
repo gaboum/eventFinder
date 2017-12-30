@@ -1,0 +1,27 @@
+@import "../base/mixins";
+@import "../base/settings";
+
+.signin-page {
+  @include section(true, 2rem, 2rem);
+  justify-content:center;
+  width: 100%;
+}
+
+.signin-page__form {
+  @include display-flex(center, true, column);
+  height: 50vh;
+  flex: 0 1 40%;
+  width: 30%;
+}
+
+.signin-page__form div div {
+  @include display-flex(center, true, column);
+}
+
+.signin-page__input {
+  height: 3rem;
+}
+
+.signin__button {
+  margin-top: 2rem!important;
+}

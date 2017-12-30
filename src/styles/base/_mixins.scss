@@ -35,8 +35,9 @@
   @content;
 }
 
-@mixin display-flex($justify-content:flex-start, $flex-wrap:true){
+@mixin display-flex($justify-content:flex-start, $flex-wrap:true, $flex-direction:row){
   display: flex;
   justify-content: $justify-content;
+  flex-direction: $flex-direction;
   flex-wrap: if($flex-wrap, wrap, none);
 }
