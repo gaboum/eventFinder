@@ -22,7 +22,7 @@ const FiltersBar = props => (
         <CSSTransitionGroup
             transitionName="filter"
             transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
+            transitionLeaveTimeout={500}>
             {filters({...props.filters}, props.removeFilter)}
         </CSSTransitionGroup>
     </div>
