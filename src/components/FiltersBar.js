@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 
 import {removeFilter} from '../actions/filters';
+import Filter from './Filter';
 
 
 /**
@@ -35,9 +36,12 @@ const filters = (list, dispatch) => {
     const filters = [];
     for (const filter in list){
         if (list[filter]){
-            filters.push(<div key={filter} className="filter-bar__filter-element"
-                              onClick={() => dispatch(removeFilter(filter))}>{list[filter]}
-                               <span className="filter-bar__remove">x</span></div>)
+            filters.push(
+                <Filter
+                    key={filter}
+                    title={list[filter]}
+                    onClick={() => dispatch(removeFilter(filter))}/>
+                    )
         }
     }
     return filters;
