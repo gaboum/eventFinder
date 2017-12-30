@@ -62,7 +62,7 @@ class FiltersForm extends LinkedComponent {
         return (
             <div id="filterForm">
                 <Input type="text"
-                       className="form-control"
+                       className="form-control form-control-lg filterForm__text-input"
                        placeholder={this.props.userData.locality}
                        valueLink={this.linkAt('location')}
                        onBlur={(e) => this.props.setLocation(e.target.value)}/>

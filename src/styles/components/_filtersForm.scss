@@ -1,10 +1,17 @@
 @import "../base/settings";
 @import "../base/mixins";
 
+
 #filterForm {
   @include display-flex();
   flex-direction: column;
   margin-top: 5rem;
+
+}
+
+.filterForm__text-input {
+  height: 3rem;
+  margin-bottom: 2rem;
 }
 
 // transitions on slide menu
@@ -35,7 +42,12 @@
 }
 
 .filterForm__control {
-  font-size: $m-size;
+  font-size: 1.8rem;
   padding: .5rem;
   text-transform: capitalize;
+  transition: color 0.5s ease;
+  &:hover{
+    color: $black-background;
+    transition: color 0.5s ease;
+  }
 }
