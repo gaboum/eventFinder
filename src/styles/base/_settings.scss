@@ -3,6 +3,8 @@ $text-on-black: #cccccc;
 $link-on-white: #656565;
 $black-background: #000000;
 $offwhite-background: rgba(249, 249, 249, 0.67);
+$grey: #ddd;
+$error : #d40f00;
 
 //SPACING AND SIZING
 $xs-size: 0.6rem;
@@ -15,6 +17,7 @@ $big_section_margin : 2rem 0;
 
 // BORDERS
 $grey-border: 1px solid #ddd;
+$dark-border: 1px solid darken(#ddd, 3%);
 
 // BREAKPOINTS
 $desktop_breakpoint : 1025;

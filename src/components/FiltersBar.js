@@ -15,7 +15,7 @@ import {removeFilter} from '../actions/filters';
  * @constructor
  */
 const FiltersBar = props => (
-    <div className="filter-bar" style={{border: 'red 1px solid'}}>
+    <div className="filter-bar">
         {filters({...props.filters}, props.removeFilter)}
     </div>
 );
@@ -34,7 +34,11 @@ const filters = (list, dispatch) => {
     delete list.endRange;
     const filters = [];
     for (const filter in list){
-        filters.push(<div key={filter} onClick={() => dispatch(removeFilter(filter))}>{list[filter]}</div>)
+        if (list[filter]){
+            filters.push(<div key={filter} className="filter-bar__filter-element"
+                              onClick={() => dispatch(removeFilter(filter))}>{list[filter]}
+                               <span className="filter-bar__remove">x</span></div>)
+        }
     }
     return filters;
 };

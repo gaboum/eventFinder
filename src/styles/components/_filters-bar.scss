@@ -1,0 +1,27 @@
+@import "../base/settings";
+@import "../base/mixins";
+
+
+.filter-bar {
+  @include display-flex(flex-start, true);
+  @include shadow(3px, 3px, 5px, 1px, $grey);
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  min-height: 8rem;
+  padding: 2rem 1rem;
+  border: $dark-border;
+  border-radius: 3px;
+  background-color: $offwhite-background;
+}
+
+.filter-bar__filter-element {
+  margin-left: 2rem;
+  border: $grey-border;
+  padding: 1rem;
+}
+
+.filter-bar__remove {
+  color: $error;
+  padding: .3rem;
+  cursor: pointer;
+}
