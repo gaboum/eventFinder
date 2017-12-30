@@ -66,9 +66,9 @@ class FiltersForm extends LinkedComponent {
                        placeholder={this.props.userData.locality}
                        valueLink={this.linkAt('location')}
                        onBlur={(e) => this.props.setLocation(e.target.value)}/>
-                <div className="filterForm__filter" onClick={this.handleClick.bind(this,0)}>
-                    <div className="filterForm__group">Categories</div>
-                        <div className={classNames('filterForm__slide', {'active' : this.state.activeTab[0]})}>
+                <div className="filterForm__filter">
+                    <div className="filterForm__group" onClick={this.handleClick.bind(this,0)}>Categories</div>
+                        <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[0]})}>
                             {this.props.categories.map((category, i) => (
                                 <div
                                     className="filterForm__control"
@@ -81,7 +81,7 @@ class FiltersForm extends LinkedComponent {
                 </div>
                 <div className="filterForm__filter">
                     <div className="filterForm__group" onClick={this.handleClick.bind(this,1)}>Event Type</div>
-                    <div className={classNames('filterForm__slide', {'active' : this.state.activeTab[1]})}>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[1]})}>
                         {this.filters.types.map((filter, i) => (
                             <div
                                 className="filterForm__control"
@@ -92,17 +92,17 @@ class FiltersForm extends LinkedComponent {
                         ))}
                     </div>
                 </div>
-                <div className="filterForm__filter" onClick={this.handleClick.bind(this,2)}>
-                    <div className="filterFrom__group">Price</div>
-                    <div className={classNames('filterForm__slide', {'active' : this.state.activeTab[2]})}>
+                <div className="filterForm__filter">
+                    <div className="filterFrom__group" onClick={this.handleClick.bind(this,2)}>Price</div>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[2]})}>
                         {this.filters.prices.map((pr, i) => (
                             <div key={i} className="filterForm__control" onClick={() => this.props.setPrice(pr)}>{pr}</div>
                         ))}
                     </div>
                 </div>
-                <div className="filterForm__filter" onClick={this.handleClick.bind(this,3)}>
-                    <div className={classNames('filterForm__slide', {'active' : this.state.activeTab[3]})}>
-                        <div className="filterForm__group">Date</div>
+                <div className="filterForm__filter">
+                    <div className="filterForm__group"  onClick={() => this.handleClick(3)}>Date</div>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[3]})}>
                         <div className="filterForm__control" onClick={() => this.props.setToday()}>Today</div>
                         <div className="filterForm__control" onClick={() => this.props.setTomorrow()}>Tomorrow</div>
                         <div className="filterForm__control" onClick={() => this.props.setThisFriday()}>This Friday</div>
