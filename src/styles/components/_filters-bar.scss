@@ -19,6 +19,7 @@
   border: $grey-border;
   padding: 1rem;
   text-transform: capitalize;
+  transition:  0.5s ease-in-out;
 }
 
 .filter-bar__remove {
@@ -26,3 +27,27 @@
   padding: .3rem;
   cursor: pointer;
 }
+
+.filter-enter {
+  opacity: 0.01;
+  width: 0px;
+}
+
+.filter-enter.filter-enter-active {
+  opacity: 1;
+  width: 100px;
+  transition: 700ms;
+}
+
+.filter-leave {
+  opacity: 1;
+  width: 100px;
+}
+
+.filter-leave.filter-leave-active {
+  opacity: 0.01;
+  width: 0px;
+  transition: 700ms;
+}
+
+
