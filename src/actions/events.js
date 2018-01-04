@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT} from './types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT, SET_VENUE, RESET_VENUE} from './types';
 import ENV from '../../ENV';
 
 const ROOT_URL = ENV.eventbriteAPI.rootURL;
@@ -97,11 +97,16 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
  * Gets venue's info basing on it's id
  * @param venueId
  */
-export const getVenue = venueId  => {
+export const getVenue = venueId  => dispatch => {
     axios.get(`${ROOT_URL}/venues/${venueId}/`, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
-        .then(resp => console.log(resp))
+        .then(resp => dispatch({ type: SET_VENUE, venue: resp.data}))
         .catch(err => console.warn(err.response))
 };
+
+
+export const resetVenue = () => ({
+    type : RESET_VENUE
+});
 
 
 
