@@ -9,6 +9,7 @@ import BackgroundSlideshow from 'react-background-slideshow'
 import {getEvents, setError} from '../../actions/events';
 import SearchForm from '../SearchForm';
 import Event from '../Event';
+import LoadingOrElements from '../LoadingOrElements';
 import img1 from '../../assets/img/ticket.jpg';
 import img2 from '../../assets/img/concert.jpg';
 
@@ -35,6 +36,7 @@ class HomePage extends React.Component {
 
 
     render(){
+        const events = this.props.events.map(event => <Event key={event.id} event={event}/>);
         return(
             <div className="homepage container=fluid">
                 <section className="homepage__slider">
@@ -44,7 +46,7 @@ class HomePage extends React.Component {
                     <SearchForm/>
                 </section>
                 <div className="homepage__events">
-                    {this.props.events.map(event => <Event key={event.id} event={event}/>)}
+                    {LoadingOrElements(events, this.props.events.length)}
                 </div>
             </div>
         )

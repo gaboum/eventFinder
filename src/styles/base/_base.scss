@@ -34,6 +34,7 @@ img, embed, video, object {
 // loading animation
 .loading-icon {
   @include display-flex(center, false);
+  align-items: center;
   margin-top: 10%;
   min-height: 80vh;
 }

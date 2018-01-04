@@ -23,7 +23,7 @@
   border-radius: 10px;
 }
 
-.homepage__events {
+.homepage__events > span {
   @include section(true, 0, 0, $offwhite-background);
   padding: 15% 9%;
   min-height: 40vh;
