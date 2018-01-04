@@ -56,7 +56,7 @@ export const getFilteredEvents = (props = {}) =>   {
         URL += startRange ? `start_date.range_start=${adjustTimestamps(startRange)}&` : '';
         URL += endRange   ? `start_date.range_end=${adjustTimestamps(endRange)}` : '';
 
-        console.log(URL);
+        //console.log(URL);
         axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
             .then(resp => {
                 //console.log(resp);
@@ -90,6 +90,17 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
         .catch(err => {
             dispatch(setError(err.response.data.errors))
         })
+};
+
+
+/**
+ * Gets venue's info basing on it's id
+ * @param venueId
+ */
+export const getVenue = venueId  => {
+    axios.get(`${ROOT_URL}/venues/${venueId}/`, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+        .then(resp => console.log(resp))
+        .catch(err => console.warn(err.response))
 };
 
 
