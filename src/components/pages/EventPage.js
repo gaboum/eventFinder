@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 
 import {getVenue, resetVenue} from '../../actions/events';
+import {findEventById} from '../../selectors/events';
 
 
 /**
@@ -36,8 +37,9 @@ class EventPage extends React.Component {
 
 
     render() {
-        //console.log(props.event[0]);
         const { logo, name, is_free, description, start, end} = this.props.event[0];
+        const {address_1, address_2, city, country, name : venue_name} = this.props.venue;
+
         return (
             <div className="event-page__background">
                 <div className="event-page__info">
@@ -54,11 +56,18 @@ class EventPage extends React.Component {
                         </div>
                     </div>
                     <div className="event-page__body">
-                        <div className="event__description"><span>Description: </span>
-                            {description.text ? description.text : ''}
-                        </div>
                         <div className="event--page__date">
                             {start && moment(start.local).format('DD')} - {end && moment(end.local).format('DD MMM')}
+                        </div>
+                        <div className="event-page__description"><span>Description: </span>
+                            {description.text ? description.text : ''}
+                        </div>
+                        <div className="event-page__venue">
+                            <div className="event-page__venue-element">{address_1 && <p>{address_1}</p>}</div>
+                            <div className="event-page__venue-element">{address_2 && <p>{address_2}</p>}</div>
+                            <div className="event-page__venue-element">{city && <p>{city}</p>}</div>
+                            <div className="event-page__venue-element">{country && <p>{country}</p>}</div>
+                            <div className="event-page__venue-element">{venue_name && <p>{venue_name}</p>}</div>
                         </div>
                     </div>
                 </div>
@@ -69,8 +78,7 @@ class EventPage extends React.Component {
 
 
 const mapStateToProps = (state, props) => ({
-    event : (state.events.events.filter(ev => ev.id === props.match.params.id)
-    || state.events.filteredEvents.filter(ev => ev.id === props.match.params.id)),
+    event : findEventById(state, props.match.params.id),
     venue : state.events.currentEventVenue
 });
 
