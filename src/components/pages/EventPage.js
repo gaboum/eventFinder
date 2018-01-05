@@ -45,21 +45,19 @@ class EventPage extends React.Component {
                 <div className="event-page__info">
                     <div className="event-page__header">
                         <div className="event-page__picture-holder">
-                            <img src={logo && logo.url} className="event__picture"/>
+                            <img src={logo && logo.url} />
                         </div>
                         <div className="event-page__basic-info">
-                            <div className="event-page__start-date">
+                            <div className="event-page__start">
                                 {start && moment(start.local).format('MMM Do')}
                             </div>
-                            <div className="event-page__title">{name && name.text}</div>
-                            {is_free && <div className="event__price-type">FREE</div>}
+                            <div className="event-page__item-name">{name && name.text}</div>
+                            {is_free && <div className="event__price-types">FREE</div>}
                         </div>
                     </div>
+                    <hr className="divider"/>
                     <div className="event-page__body">
-                        <div className="event--page__date">
-                            {start && moment(start.local).format('DD')} - {end && moment(end.local).format('DD MMM')}
-                        </div>
-                        <div className="event-page__description"><span>Description: </span>
+                        <div className="event-page__description"><span className="event-page__description">Description: </span>
                             {description.text ? description.text : ''}
                         </div>
                         <div className="event-page__venue">
@@ -68,6 +66,9 @@ class EventPage extends React.Component {
                             <div className="event-page__venue-element">{city && <p>{city}</p>}</div>
                             <div className="event-page__venue-element">{country && <p>{country}</p>}</div>
                             <div className="event-page__venue-element">{venue_name && <p>{venue_name}</p>}</div>
+                            <div className="event--page__date">
+                                {start && moment(start.local).format('DD')} - {end && moment(end.local).format('DD MMM')}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,69 @@
+@import "../base/settings";
+@import "../base/mixins";
+
+.event-page__background {
+  @include section(true, 0, 1rem, $offwhite-background, center);
+  width: 100%;
+}
+
+.event-page__info {
+  background: white;
+  margin: 5rem 0;
+  width: 80%;
+}
+
+.event-page__header {
+  @include display-flex($flex-wrap: false);
+  padding: 1rem;
+}
+
+.event-page__picture-holder {
+  flex-basis: 60%;
+  img {
+    width: 100%;
+  }
+}
+
+.event-page__basic-info {
+  @include display-flex(start, false, column);
+  padding: 3rem 3rem 0 3rem;
+}
+
+
+.event-page__start {
+  padding-bottom: 1rem;
+  color: $grey;
+  font-size: $l-size;
+}
+
+.event__price-types {
+  margin-top: auto;
+  color: $grey;
+  font-size: $l-size;
+}
+
+.event-page__item-name {
+  font-size: $xl-size;
+  color: $off-black;
+}
+
+.event-page__body {
+  @include display-flex();
+  margin-top: 5rem;
+  color: $grey;
+  justify-content: space-around;
+}
+
+.event-page__description {
+  flex: 0 0 40%;
+  padding: 0 2rem;
+  color: $off-black;
+  font-size: $m-size;
+  text-align: justify;
+}
+
+.event-page__venue {
+  flex: 0 0 30%;
+  color: $off-black;
+  @include display-flex($flex-direction: column)
+}
