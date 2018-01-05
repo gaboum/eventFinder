@@ -1,0 +1,22 @@
+@import "../base/settings";
+@import "../base/mixins";
+
+.create-event-container {
+  @include display-flex(center);
+  margin: $big_section_margin;
+}
+
+.create-event__form {
+  width: 80%;
+  background: $offwhite-background;
+  padding: 2rem 5rem;
+}
+.create-event__fieldset {
+  margin-top: 1rem;
+}
+.create-event__button {
+  width: 100%;
+}
+.create-event__fieldset--pickers {
+  @include display-flex(space-between);
+}

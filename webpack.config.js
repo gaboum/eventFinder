@@ -26,7 +26,22 @@ module.exports = (env) => {
                             outputPath: 'assets/',
                             publicPath: '/'
                         }
-                    }]
+                        },
+                        {
+                            loader: 'image-webpack-loader',
+                            options: {
+                                optipng: {
+                                    optimizationLevel: 7
+                                },
+                                pngquant: {
+                                    quality: '65-90'
+                                },
+                                mozjpeg: {
+                                    quality: 65
+                                }
+                            }
+                        }
+                    ]
                 },
                 {
                 test: /\.s?css$/,
