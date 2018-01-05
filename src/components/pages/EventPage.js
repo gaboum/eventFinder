@@ -59,7 +59,7 @@ class EventPage extends React.Component {
                     </div>
                     <hr className="divider"/>
                     <div className="event-page__body">
-                        <div className="event-page__description"><span className="event-page__description">Description: </span>
+                        <div className="event-page__description"><span>Description: </span>
                             {description.text ? description.text : ''}
                         </div>
                         <div className="event-page__venue">

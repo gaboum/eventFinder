@@ -38,7 +38,7 @@
 
 .event__price-types {
   margin-top: auto;
-  color: $grey;
+  color: $off-black;
   font-size: $l-size;
 }
 
@@ -60,6 +60,9 @@
   color: $off-black;
   font-size: $m-size;
   text-align: justify;
+  span {
+    font-weight: bold;
+  }
 }
 
 .event-page__venue {
