@@ -7,6 +7,8 @@ import moment from 'moment';
 
 import {getVenue, resetVenue} from '../../actions/events';
 import {findEventById} from '../../selectors/events';
+import Map from '../GoogleMap';
+import ENV from '../../../ENV';
 
 
 /**
@@ -16,7 +18,6 @@ import {findEventById} from '../../selectors/events';
  * @constructor
  */
 class EventPage extends React.Component {
-
 
     /**
      * Fulfils an AJAX request to get venue's info
@@ -38,7 +39,8 @@ class EventPage extends React.Component {
 
     render() {
         const { logo, name, is_free, description, start, end} = this.props.event[0];
-        const {address_1, address_2, city, country, name : venue_name} = this.props.venue;
+        const {address_1, address_2, city, country, name : venue_name, latitude, longitude} = this.props.venue;
+        const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${ENV.googleAPI.keyAPI}&v=3.exp&libraries=geometry,drawing,places`;
 
         return (
             <div className="event-page__background">
@@ -71,6 +73,19 @@ class EventPage extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {latitude &&
+                    <div className="event-page__map">
+                        <Map
+                            longitude={longitude}
+                            latitude={latitude}
+                            isMarkerShown
+                            googleMapURL={googleMapsUrl}
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `400px` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
+                    </div>
+                    }
                 </div>
             </div>
         )

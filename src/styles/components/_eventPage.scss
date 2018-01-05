@@ -67,3 +67,7 @@
   color: $off-black;
   @include display-flex($flex-direction: column)
 }
+
+.event-page__map {
+  margin-top: 5rem;
+}

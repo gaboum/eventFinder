@@ -29,7 +29,6 @@ export default (state=eventReducerDefaultState, action) => {
             };
             break;
         case SET_VENUE:
-            console.log('pirif');
             return {
                 ...state,
                 currentEventVenue: action.venue
