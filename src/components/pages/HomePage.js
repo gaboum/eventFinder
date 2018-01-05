@@ -41,9 +41,9 @@ class HomePage extends React.Component {
             <div className="homepage container=fluid">
                 <section className="homepage__slider">
                     <img src="scripts/assets/ticket.jpg"/>
-                </section>
-                <section className="homepage__searchform">
-                    <SearchForm/>
+                    <section className="homepage__searchform">
+                        <SearchForm/>
+                    </section>
                 </section>
                 <div className="homepage__events">
                     {LoadingOrElements(events, this.props.events.length)}
