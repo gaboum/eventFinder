@@ -4,15 +4,17 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {toggleNavbar} from '../actions/userData';
+import classNames from 'classnames';
 
 export const Header = (props) => (
     <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-right">
             <NavLink className="navbar-brand" to="/">Revent</NavLink>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" onClick={props.toggleNavbar}>
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarColor03">
+            <div className={classNames('collapse', 'navbar-collapse', {'clicked' : props.clicked})} id="navbarColor03">
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <NavLink activeClassName="active" className="nav-link" to="/browse">Browse</NavLink>
@@ -41,8 +43,14 @@ export const Header = (props) => (
     </div>
 );
 
+
 const mapStateToProps = (state) => ({
-    authenticated : state.userData.authenticated
+    authenticated : state.userData.authenticated,
+    clicked : state.userData.clicked
 });
 
-export default connect(mapStateToProps, undefined)(Header);
+const mapDispatchToProps = dispatch => ({
+    toggleNavbar : () => dispatch(toggleNavbar())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

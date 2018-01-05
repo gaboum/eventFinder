@@ -1,5 +1,6 @@
 @import "../base/mixins";
 @import "../base/settings";
+@import "../base/layout";
 @import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 #app > div > div > nav {
@@ -32,4 +33,31 @@
   display:flex;
   justify-content: flex-end;
   margin-right: 0;
+  transition: opacity 700ms 0ms;
+}
+
+@include range-breakpoint(0px, 991px, false) {
+  .clicked {
+    height: 0px;
+    opacity: 0.01;
+    z-index: -100;
+    transition: opacity 700ms 0ms;
+  }
+  .nav-item {
+    border: none;
+    text-align: center;
+  }
+  #navbarColor03 {
+    justify-content: center;
+  }
+}
+
+@include type-breakpoint('mobile') {
+  .nav-link {
+    font-size: 1rem!important;
+    padding: .2rem;
+  }
+  .navbar-brand {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 /**
  * Created by HP on 25-Dec-17.
  */
-import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR, SIGN_USER_OUT} from './types';
+import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR, SIGN_USER_OUT, CLICK_NAVBAR} from './types';
 import {setError} from './events'
 import ENV from '../../ENV';
 
@@ -28,6 +28,15 @@ export const signUserOut = () => {
         type : SIGN_USER_OUT,
     }
 };
+
+
+/**
+ * Toggles navbar state
+ */
+export const toggleNavbar = () => ({
+    type : CLICK_NAVBAR
+});
+
 
 
 
