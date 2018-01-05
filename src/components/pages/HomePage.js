@@ -40,7 +40,7 @@ class HomePage extends React.Component {
         return(
             <div className="homepage container=fluid">
                 <section className="homepage__slider">
-                    <img src="/assets/ticket.jpg"/>
+                    <img src="scripts/assets/ticket.jpg"/>
                 </section>
                 <section className="homepage__searchform">
                     <SearchForm/>
