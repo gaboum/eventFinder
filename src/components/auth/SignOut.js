@@ -15,6 +15,7 @@ class SignOut extends React.Component {
      * Signing out user and redirecting to the homepage
      */
     componentDidMount() {
+        if (!this.props.authenticated) this.props.history.push('/');
         this.props.signOut();
         setTimeout(() => {
             this.props.history.push('/');
@@ -25,6 +26,7 @@ class SignOut extends React.Component {
         return (
             <div className="signout">
                 <h1 className="signout__heading">Sory to see you go</h1>
+                <p>We hope to see you again soon!</p>
             </div>
         )
     }

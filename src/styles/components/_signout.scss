@@ -3,6 +3,10 @@
 
 .signout {
   @include section(true, 5rem, 2rem, $justify:center);
+  flex-direction: column;
   align-items: center;
-  min-height: 40vh;
+  min-height: 60vh;
+  h1, p {
+    color: $off-black;
+  }
 }
