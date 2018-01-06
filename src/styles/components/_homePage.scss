@@ -38,15 +38,27 @@
   min-height: 40vh;
 }
 
+@include range-breakpoint(800px, 1024px){
+  .homepage__searchform {
+    top: 30%;
+    padding: 3rem 2.5rem;
+  }
+  .homepage__slider {
+    height: auto;
+  }
+}
 
 @include range-breakpoint(500px, 800px){
   .homepage__searchform {
     top: 20%;
-    padding: 5rem 2.5rem;
+    padding: 2rem 2.5rem;
+  }
+  .homepage__slider {
+    height: 50vh;
   }
 }
 
-@include range-breakpoint(0px, 800px){
+@include range-breakpoint(0px, 500px){
   .homepage__slider {
     height: 40vh;
   }
