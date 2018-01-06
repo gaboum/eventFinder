@@ -1,7 +1,7 @@
 /**
  * Created by HP on 25-Dec-17.
  */
-import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR, SIGN_USER_OUT} from './types';
+import {SET_USER_LOCATION, SET_USER_LOCALITY, SIGN_USER_IN, SET_AUTH_ERROR, SIGN_USER_OUT, CLICK_NAVBAR} from './types';
 import {setError} from './events'
 import ENV from '../../ENV';
 
@@ -30,6 +30,15 @@ export const signUserOut = () => {
 };
 
 
+/**
+ * Toggles navbar state
+ */
+export const toggleNavbar = () => ({
+    type : CLICK_NAVBAR
+});
+
+
+
 
 /**
  * Gets user's city based on coordinates from google API
@@ -38,7 +47,10 @@ export const signUserOut = () => {
 export const getUsersLocality = coord => dispatch => {
     let URL = `${ENV.googleAPI.rootURL}?latlng=${coord.latitude},${coord.longitude}&result_type=locality&key=${ENV.googleAPI.keyAPI}`;
     axios.get(URL)
-        .then(resp => dispatch({type : SET_USER_LOCALITY, locality: resp.data.results[0].formatted_address}))
+        .then(resp => {
+            console.log(resp);
+            dispatch({type : SET_USER_LOCALITY, locality: resp.data.results[0].formatted_address})
+        })
         .catch(err => dispatch(setError(err)));
 };
 

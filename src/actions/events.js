@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT} from './types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT, SET_VENUE, RESET_VENUE} from './types';
 import ENV from '../../ENV';
 
 const ROOT_URL = ENV.eventbriteAPI.rootURL;
@@ -17,7 +17,7 @@ const ROOT_URL = ENV.eventbriteAPI.rootURL;
 export const getEvents = ({latitude, longitude}={}) => dispatch => {
     let URL = `${ROOT_URL}/events/search/`;
     URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
-    //console.log(URL)
+    console.log(URL)
     axios.get(`${URL}`,
         {
             headers : {Authorization : ENV.eventbriteAPI.OAuthToken}
@@ -56,7 +56,7 @@ export const getFilteredEvents = (props = {}) =>   {
         URL += startRange ? `start_date.range_start=${adjustTimestamps(startRange)}&` : '';
         URL += endRange   ? `start_date.range_end=${adjustTimestamps(endRange)}` : '';
 
-        console.log(URL);
+        //console.log(URL);
         axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
             .then(resp => {
                 //console.log(resp);
@@ -91,6 +91,22 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
             dispatch(setError(err.response.data.errors))
         })
 };
+
+
+/**
+ * Gets venue's info basing on it's id
+ * @param venueId
+ */
+export const getVenue = venueId  => dispatch => {
+    axios.get(`${ROOT_URL}/venues/${venueId}/`, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+        .then(resp => dispatch({ type: SET_VENUE, venue: resp.data}))
+        .catch(err => console.warn(err.response))
+};
+
+
+export const resetVenue = () => ({
+    type : RESET_VENUE
+});
 
 
 

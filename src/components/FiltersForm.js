@@ -5,7 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {LinkedComponent} from 'valuelink';
 import {Input} from 'valuelink/tags';
-import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import * as actions from '../actions/filters';
 
@@ -18,10 +18,12 @@ class FiltersForm extends LinkedComponent {
 
     /**
      * This state is solely for controlling custom input
+     * And also for controlling active tab the filter menu
      * @type {{location: string}}
      */
     state = {
-        location : ''
+        location : '',
+        activeTab: [false, false, false, false],
     };
 
     /**
@@ -43,51 +45,72 @@ class FiltersForm extends LinkedComponent {
     }
 
 
+    /**
+     * Tobgles active state of a tab basing on it's number in array
+     * @param tab
+     */
+    handleClick (tab) {
+        this.setState(oldState => ({
+            activeTab : oldState.activeTab.map((t,i) => {
+                return i === tab ? !oldState.activeTab[i] : false;
+            })
+        }))
+    }
+
+
     render(){
         return (
             <div id="filterForm">
                 <Input type="text"
+                       className="form-control form-control-lg filterForm__text-input"
                        placeholder={this.props.userData.locality}
                        valueLink={this.linkAt('location')}
                        onBlur={(e) => this.props.setLocation(e.target.value)}/>
-
                 <div className="filterForm__filter">
-                    <div className="filterForm__group">Categories</div>
-                    {this.props.categories.map((category, i) => (
-                        <div
-                            className="filterForm__control"
-                            onClick={() => this.props.setCategory(category)}
-                            key={i}>
-                            {category.name}
+                    <div className="filterForm__group" onClick={this.handleClick.bind(this,0)}>Categories</div>
+                        <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[0]})}>
+                            {this.props.categories.map((category, i) => (
+                                <div
+                                    className="filterForm__control"
+                                    onClick={() => this.props.setCategory(category)}
+                                    key={i}>
+                                    {category.name}
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                /*<div className="filterForm__filter">
-                    <div className="filterForm__group">Event Type</div>
-                    {this.filters.types.map((filter, i) => (
-                        <div
-                            className="filterForm__control"
-                            onClick={() => this.props.setType(filter)}
-                            key={i}>
-                            {filter}
-                        </div>
-                    ))}
-                </div>*/
-                <div className="filterForm__filter">
-                    <div className="filterFrom__group">Price</div>
-                    {this.filters.prices.map((pr, i) => (
-                        <div key={i} className="filterForm__control" onClick={() => this.props.setPrice(pr)}>{pr}</div>
-                    ))}
                 </div>
                 <div className="filterForm__filter">
-                    <div className="filterForm__group">Date</div>
-                    <div className="filterForm__control" onClick={() => this.props.setToday()}>Today</div>
-                    <div className="filterForm__control" onClick={() => this.props.setTomorrow()}>Tomorrow</div>
-                    <div className="filterForm__control" onClick={() => this.props.setThisFriday()}>This Friday</div>
-                    <div className="filterForm__control" onClick={() => this.props.setThisWeek()}>This Week</div>
-                    <div className="filterForm__control" onClick={() => this.props.setThisWeekend()}>This Weekend</div>
-                    <div className="filterForm__control" onClick={() => this.props.setNextWeek()}>Next Week</div>
-                    <div className="filterForm__control" onClick={() => this.props.setThisMonth()}>This Month</div>
+                    <div className="filterForm__group" onClick={this.handleClick.bind(this,1)}>Event Type</div>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[1]})}>
+                        {this.filters.types.map((filter, i) => (
+                            <div
+                                className="filterForm__control"
+                                onClick={() => this.props.setType(filter)}
+                                key={i}>
+                                {filter}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="filterForm__filter">
+                    <div className="filterFrom__group" onClick={this.handleClick.bind(this,2)}>Price</div>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[2]})}>
+                        {this.filters.prices.map((pr, i) => (
+                            <div key={i} className="filterForm__control" onClick={() => this.props.setPrice(pr)}>{pr}</div>
+                        ))}
+                    </div>
+                </div>
+                <div className="filterForm__filter">
+                    <div className="filterForm__group"  onClick={() => this.handleClick(3)}>Date</div>
+                    <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[3]})}>
+                        <div className="filterForm__control" onClick={() => this.props.setToday()}>Today</div>
+                        <div className="filterForm__control" onClick={() => this.props.setTomorrow()}>Tomorrow</div>
+                        <div className="filterForm__control" onClick={() => this.props.setThisFriday()}>This Friday</div>
+                        <div className="filterForm__control" onClick={() => this.props.setThisWeek()}>This Week</div>
+                        <div className="filterForm__control" onClick={() => this.props.setThisWeekend()}>This Weekend</div>
+                        <div className="filterForm__control" onClick={() => this.props.setNextWeek()}>Next Week</div>
+                        <div className="filterForm__control" onClick={() => this.props.setThisMonth()}>This Month</div>
+                    </div>
                 </div>
             </div>
         )

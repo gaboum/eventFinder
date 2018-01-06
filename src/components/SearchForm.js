@@ -14,8 +14,8 @@ import {setText} from '../actions/filters';
  */
 const SearchForm = props =>(
     <div className="search-form">
-        <input className="search-form__text" type="text" placeholder={props.locality} onChange={e => props.setTextFilter(e.target.value)}/>
-        <button onClick={() => props.history.push('/browse')}>SEARCH</button>
+        <input className="search-form__text form-control" type="text" placeholder={props.locality} onChange={e => props.setTextFilter(e.target.value)}/>
+        <button onClick={() => props.history.push('/browse')} className="btn btn-default">SEARCH</button>
     </div>
 );
 

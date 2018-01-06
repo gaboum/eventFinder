@@ -6,7 +6,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
+
 import {removeFilter} from '../actions/filters';
+import Filter from './Filter';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 
 /**
@@ -15,8 +18,13 @@ import {removeFilter} from '../actions/filters';
  * @constructor
  */
 const FiltersBar = props => (
-    <div className="filter-bar" style={{border: 'red 1px solid'}}>
-        {filters({...props.filters}, props.removeFilter)}
+    <div className="filter-bar">
+        <CSSTransitionGroup
+            transitionName="filter"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
+            {filters({...props.filters}, props.removeFilter)}
+        </CSSTransitionGroup>
     </div>
 );
 
@@ -34,7 +42,15 @@ const filters = (list, dispatch) => {
     delete list.endRange;
     const filters = [];
     for (const filter in list){
-        filters.push(<div key={filter} onClick={() => dispatch(removeFilter(filter))}>{list[filter]}</div>)
+        if (list[filter]){
+            filters.push(
+                <Filter
+                    show={list[filter]}
+                    key={filter}
+                    title={list[filter]}
+                    onClick={() => dispatch(removeFilter(filter))}/>
+                    )
+        }
     }
     return filters;
 };

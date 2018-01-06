@@ -29,21 +29,23 @@ class SignIn extends React.Component {
     render (){
         const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
-            <div className="signin-page">
-                <form onSubmit={handleSubmit}>
+            <div className="signin-page container-fluid">
+                <form onSubmit={handleSubmit} className="signin-page__form">
                     <Field
+                        className="form-control signin-page__input"
                         name="email"
                         type="text"
+                        placeholder="Email"
                         component={renderField}
-                        label="Email"
                     />
                     <Field
+                        className="form-control signin-page__input"
                         name="password"
                         type="password"
+                        placeholder="Password"
                         component={renderField}
-                        label="password"
                     />
-                    <button type="submit" disabled={submitting} className="btn btn-default">SignIN</button>
+                    <button type="submit" disabled={submitting} className="btn btn-danger signin__button ">SignIN</button>
                     {this.props.authErrors && <p>{this.props.authErrors}</p>}
                 </form>
             </div>
@@ -88,14 +90,16 @@ const renderField = ({
     input,
     label,
     type,
+    className,
+    placeholder,
     meta: { touched, error, warning }
 }) => (
     <div>
         <label>{label}</label>
         <div>
-            <input {...input} placeholder={label} type={type} />
+            <input {...input} placeholder={placeholder} type={type} className={className}/>
             {touched &&
-            ((error && <span>{error}</span>) ||
+            ((error && <span className="error">{error}</span>) ||
             (warning && <span>{warning}</span>))}
         </div>
     </div>

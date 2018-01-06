@@ -12,11 +12,38 @@ module.exports = (env) => {
             filename: 'bundle.js'
         },
         module: {
-            rules: [{
-                loader: 'babel-loader',
-                test: /\.js$/,
-                exclude: /node_modules/
-            }, {
+                rules: [{
+                     loader: 'babel-loader',
+                     test: /\.js$/,
+                     exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|jp(e*)g|svg)$/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/',
+                            publicPath: '/'
+                        }
+                        },
+                        {
+                            loader: 'image-webpack-loader',
+                            options: {
+                                optipng: {
+                                    optimizationLevel: 7
+                                },
+                                pngquant: {
+                                    quality: '65-90'
+                                },
+                                mozjpeg: {
+                                    quality: 65
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
                 test: /\.s?css$/,
                 use: CSSExtract.extract({
                     use : [
@@ -38,7 +65,8 @@ module.exports = (env) => {
                     ]
                 })
 
-            }]
+            },
+            ]
         },
         plugins : [
             CSSExtract,

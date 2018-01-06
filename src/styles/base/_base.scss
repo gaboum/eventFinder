@@ -1,3 +1,5 @@
+@import "./mixins";
+
 html {
   font-size: 62.5%;
 }
@@ -27,6 +29,17 @@ img, embed, video, object {
 .error {
   color : #b20000;
   font-weight: bold;
+}
+
+// loading animation
+.loading-icon {
+  @include display-flex(center, false);
+  align-items: center;
+  min-height: 80vh;
+}
+
+.divider {
+  margin-top: 5rem;
 }
 
 

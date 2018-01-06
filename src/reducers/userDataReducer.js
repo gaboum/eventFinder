@@ -8,7 +8,8 @@ import {
     SIGN_USER_IN,
     SET_AUTH_ERROR,
     SIGN_USER_UP,
-    SIGN_USER_OUT
+    SIGN_USER_OUT,
+    CLICK_NAVBAR
 } from '../actions/types';
 
 const userDataReducerDefaultState = {
@@ -16,7 +17,8 @@ const userDataReducerDefaultState = {
     locality : '',
     authenticated : false,
     jwtToken : '',
-    authErrors : ''
+    authErrors : '',
+    clicked    : true
 };
 
 export default (state=userDataReducerDefaultState, action) => {
@@ -64,6 +66,11 @@ export default (state=userDataReducerDefaultState, action) => {
                 authenticated : false
             };
             break;
+        case CLICK_NAVBAR:
+            return {
+                ...state,
+                clicked: !state.clicked
+            };
         default:
             return state;
     }

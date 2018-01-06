@@ -1,11 +1,12 @@
 /**
  * Created by HP on 23-Dec-17.
  */
-import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, REMOVE_FILTER, SAVE_EVENT} from '../actions/types';
+import {SET_ERROR, SET_NEARBY, SET_FILTERED_EVENTS, SAVE_EVENT, SET_VENUE, RESET_VENUE} from '../actions/types';
 
 const eventReducerDefaultState = {
     events : [],
     filteredEvents : [],
+    currentEventVenue : {},
     errors  : '',
     newEventSaved : false,
 };
@@ -23,10 +24,20 @@ export default (state=eventReducerDefaultState, action) => {
         case SAVE_EVENT:
             return {
                 ...state,
-                newEventSaved : !state.newEventSaved,
-                errors : ''
+                newEventSaved: !state.newEventSaved,
+                errors: ''
             };
             break;
+        case SET_VENUE:
+            return {
+                ...state,
+                currentEventVenue: action.venue
+            };
+        case RESET_VENUE:
+            return {
+                ...state,
+                currentEventVenue : {}
+            };
         default:
             return state;
     }

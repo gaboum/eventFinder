@@ -16,6 +16,7 @@ import SignUp from '../components/auth/SignUp';
 import SignOut from '../components/auth/SignOut';
 import RequireAuth from '../components/auth/RequireAuth';
 import AnimatedPage from '../components/pages/AnimatedPageHOC';
+import EventPage from '../components/pages/EventPage';
 
 
 
@@ -30,6 +31,7 @@ const AppRouter = () => (
                 <Route path="/signup" component={AnimatedPage(SignUp)} />
                 <Route path="/signin" component={AnimatedPage(SignIn)} />
                 <Route path="/signout" component={AnimatedPage(SignOut)} />
+                <Route path="/event/:id" component={AnimatedPage(EventPage)} />
                 <Route component={AnimatedPage(PageNotFound)}/>
             </Switch>
             <Footer/>

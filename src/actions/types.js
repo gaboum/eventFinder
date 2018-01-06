@@ -6,6 +6,9 @@ export const SET_ERROR           = 'SET_ERROR';
 export const SET_NEARBY          = 'SET_NEARBY';
 export const SET_FILTERED_EVENTS = 'SET_FILTERED_EVENTS';
 export const SAVE_EVENT          = 'SAVE_EVENT';
+export const SET_VENUE           = 'SET_VENUE';
+export const RESET_VENUE         = 'RESET_VENUE';
+export const CLICK_NAVBAR        = 'CLICK_NAVBAR';
 
 
 

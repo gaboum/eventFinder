@@ -6,44 +6,42 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {getEvents, setError} from '../../actions/events';
+import {getUsersLocality} from '../../actions/userData';
 import SearchForm from '../SearchForm';
 import Event from '../Event';
+import LoadingOrElements from '../LoadingOrElements';
+import img1 from '../../assets/img/ticket.jpg';
+
 
 
 class HomePage extends React.Component {
 
     /**
-     *
-     * Dispatches action which obtains nearby events
+     * Dispatches getting event action after receiving user's location
      */
-    componentDidMount() {
-        this.props.getEvents(this.props.location)
-    }
-
-    /**
-     * Prevents component on infinite updating after receiving events from AJAX call
-     * @param nextProps
-     * @param _
-     * @returns {boolean}
-     */
-    shouldComponentUpdate(nextProps, _) {
-        return this.props.events.length !== nextProps.events.length;
+    componentDidUpdate() {
+        if (!this.props.events.length) {
+            this.props.getEvents(this.props.location);
+            this.props.getLocality(this.props.location);
+        }
     }
 
 
     render(){
+        const events = this.props.events.map(event => <Event key={event.id} event={event}/>);
         return(
             <div className="homepage container=fluid">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1>Home Page</h1>
+                <section className="homepage__slider">
+                    <img src="scripts/assets/ticket.jpg"/>
+                    <section className="homepage__searchform">
                         <SearchForm/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        {this.props.events.map(event => <Event key={event.id} event={event}/>)}
-                    </div>
+                    </section>
+                </section>
+                <section className="homepage__greeting">
+                    {this.props.location.latitude && <h1 className="display-2">All events in {this.props.locality}</h1>}
+                </section>
+                <div className="homepage__events">
+                    {LoadingOrElements(events, this.props.events.length)}
                 </div>
             </div>
         )
@@ -66,6 +64,7 @@ HomePage.propTypes = {
  */
 const mapStateToProps = state => ({
     location : state.userData.location,
+    locality : state.userData.locality,
     events   : state.events.events
 });
 
@@ -76,7 +75,8 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
     getEvents : (cords) => dispatch(getEvents(cords)),
-    setError : (error) => dispatch(setError(error))
+    setError : (error) => dispatch(setError(error)),
+    getLocality : (coord) => dispatch(getUsersLocality(coord))
 });
 
 

@@ -5,12 +5,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 
+
 import FiltersForm from '../FiltersForm';
 import FiltersBar from '../FiltersBar';
 import Event from '../Event';
 import {getFilteredEvents} from '../../actions/events';
 import {getUsersLocality} from '../../actions/userData';
 import {filtersAreSame} from '../../helpers/compareFilters';
+import LoadingOrElements from '../LoadingOrElements';
+
 
 
 
@@ -24,8 +27,9 @@ class Browse extends React.Component {
      * Gets events baised on user's location on initial loac
      */
     componentDidMount() {
-        this.props.getFilteredEvents(this.props);
+        if(this.props.events.length === 0)this.props.getFilteredEvents(this.props);
     }
+
 
 
     /**
@@ -40,24 +44,38 @@ class Browse extends React.Component {
         }
     }
 
+    /**
+     * Returns a boolean if there are any filters present
+     * @param categoryName
+     * @param typeOfE
+     * @param textFilter
+     * @param dateRangeText
+     * @param price
+     * @returns {*}
+     */
+    static shouldDisplayFilterBar({categoryName,typeOfE,textFilter, dateRangeText, price}) {
+        return categoryName || typeOfE || textFilter || dateRangeText || price;
+    }
+
+
 
     render(){
+        const events = this.props.events.map(ev => <Event key={ev.id}  event={ev}  />);
+
         return(
-            <div className="browse-page">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-3">
-                            <FiltersForm/>
-                        </div>
-                        <div className="col-md-9">
-                            <FiltersBar/>
-                            {this.props.events.map(ev => {
-                                return <Event
-                                    key={ev.id}
-                                    event={ev}
-                                />
-                            })}
-                        </div>
+            <div className="container-fluid browse-page">
+                <div className="browse-page__filter-form">
+                    <FiltersForm/>
+                </div>
+                <div className="browse-page__events">
+                    {Browse.shouldDisplayFilterBar(this.props.filters)
+                    ?
+                        <FiltersBar/>
+                    :
+                        <div className="filter-fix"></div>
+                    }
+                    <div className="browse--page__events-container">
+                        {LoadingOrElements(events, this.props.events.length)}
                     </div>
                 </div>
             </div>
