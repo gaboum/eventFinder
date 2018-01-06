@@ -17,7 +17,7 @@ const ROOT_URL = ENV.eventbriteAPI.rootURL;
 export const getEvents = ({latitude, longitude}={}) => dispatch => {
     let URL = `${ROOT_URL}/events/search/`;
     URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
-    //console.log(URL)
+    console.log(URL)
     axios.get(`${URL}`,
         {
             headers : {Authorization : ENV.eventbriteAPI.OAuthToken}

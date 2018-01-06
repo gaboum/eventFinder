@@ -17,21 +17,12 @@ import img2 from '../../assets/img/concert.jpg';
 class HomePage extends React.Component {
 
     /**
-     *
-     * Dispatches action which obtains nearby events
+     * Dispatches getting event action after receiving user's location
      */
-    componentDidMount() {
-        this.props.getEvents(this.props.location);
-    }
-
-    /**
-     * Prevents component on infinite updating after receiving events from AJAX call
-     * @param nextProps
-     * @param _
-     * @returns {boolean}
-     */
-    shouldComponentUpdate(nextProps, _) {
-        return this.props.events.length !== nextProps.events.length;
+    componentDidUpdate() {
+        if (!this.props.events.length) {
+            this.props.getEvents(this.props.location);
+        }
     }
 
 

@@ -22,6 +22,7 @@ import LoadingOrElements from '../LoadingOrElements';
  */
 class Browse extends React.Component {
 
+
     /**
      * Starts an AJAX request to obtain filtered events in accordance with user's input
      * Gets events baised on user's location on initial loac
@@ -29,6 +30,7 @@ class Browse extends React.Component {
     componentDidMount() {
         if(this.props.events.length === 0)this.props.getFilteredEvents(this.props);
     }
+
 
 
     /**
@@ -43,9 +45,20 @@ class Browse extends React.Component {
         }
     }
 
+    /**
+     * Returns a boolean if there are any filters present
+     * @param categoryName
+     * @param typeOfE
+     * @param textFilter
+     * @param dateRangeText
+     * @param price
+     * @returns {*}
+     */
     static shouldDisplayFilterBar({categoryName,typeOfE,textFilter, dateRangeText, price}) {
         return categoryName || typeOfE || textFilter || dateRangeText || price;
     }
+
+
 
     render(){
         const events = this.props.events.map(ev => <Event key={ev.id}  event={ev}  />);
