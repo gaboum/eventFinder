@@ -43,6 +43,9 @@ class Browse extends React.Component {
         }
     }
 
+    shouldDisplayFilterBar({categoryName,typeOfE,textFilter, dateRangeText, price}) {
+        return categoryName || typeOfE || textFilter || dateRangeText || price;
+    }
 
     render(){
         const events = this.props.events.map(ev => <Event key={ev.id}  event={ev}  />);
@@ -53,7 +56,8 @@ class Browse extends React.Component {
                     <FiltersForm/>
                 </div>
                 <div className="browse-page__events">
-                    <FiltersBar/>
+                    {this.shouldDisplayFilterBar(this.props.filters) && <FiltersBar/>}
+                    {!this.shouldDisplayFilterBar(this.props.filters) && <div className="filter-fix"></div>}
                     <div className="browse--page__events-container">
                         {LoadingOrElements(events, this.props.events.length)}
                     </div>

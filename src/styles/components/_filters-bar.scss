@@ -13,6 +13,7 @@
   background-color: $offwhite-background;
   & > span {
     @include display-flex(flex-start, true);
+    flex-grow: 0;
   }
 }
 
