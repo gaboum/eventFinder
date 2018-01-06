@@ -86,26 +86,30 @@ class CreateForm extends React.Component{
                         {this.state.touched && this.state.location.error && <p className="error">{this.state.location.error}</p>}
                     </div>
                     <div className="create-event__fieldset create-event__fieldset--pickers">
-                        <label htmlFor="start-date">Start Date</label>
-                        <DateTimeSet
-                            onChange={e => {this.setState({startDate:{value:e.format('DD:MM:YYYY')}})}}
-                            name="start-date"
-                            context="today"
-                            defaultDate={moment()}
-                            defaultTime={moment()}
-                            type="text"
-                        />
-                        {this.state.touched && this.state.startDate.error && <p className="error">{this.state.startDate.error}</p>}
-                        <label htmlFor="start-date">End Date</label>
-                        <DateTimeSet
-                            onChange={e => {this.setState({endDate:{value:e.format('DD:MM:YYYY')}})}}
-                            name="end-date"
-                            context="today"
-                            defaultDate={moment()}
-                            defaultTime={moment()}
-                            type="text"
-                        />
-                        {this.state.touched && this.state.endDate.error && <p className="error">{this.state.endDate.error}</p>}
+                        <div className="create-event__picker">
+                            <label htmlFor="start-date">Start Date</label>
+                            <DateTimeSet
+                                onChange={e => {this.setState({startDate:{value:e.format('DD:MM:YYYY')}})}}
+                                name="start-date"
+                                context="today"
+                                defaultDate={moment()}
+                                defaultTime={moment()}
+                                type="text"
+                            />
+                            {this.state.touched && this.state.startDate.error && <p className="error">{this.state.startDate.error}</p>}
+                        </div>
+                        <div className="create-event__picker">
+                            <label htmlFor="start-date">End Date</label>
+                            <DateTimeSet
+                                onChange={e => {this.setState({endDate:{value:e.format('DD:MM:YYYY')}})}}
+                                name="end-date"
+                                context="today"
+                                defaultDate={moment()}
+                                defaultTime={moment()}
+                                type="text"
+                            />
+                            {this.state.touched && this.state.endDate.error && <p className="error">{this.state.endDate.error}</p>}
+                        </div>
                     </div>
                     <div className="create-event__fieldset">
                         <FileUpload name="picture"  onChange={e => {this.setState({picture : {value: e}})}}/>
