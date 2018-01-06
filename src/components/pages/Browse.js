@@ -27,7 +27,7 @@ class Browse extends React.Component {
      * Gets events baised on user's location on initial loac
      */
     componentDidMount() {
-        this.props.getFilteredEvents(this.props);
+        if(this.props.events.length === 0)this.props.getFilteredEvents(this.props);
     }
 
 
@@ -43,7 +43,7 @@ class Browse extends React.Component {
         }
     }
 
-    shouldDisplayFilterBar({categoryName,typeOfE,textFilter, dateRangeText, price}) {
+    static shouldDisplayFilterBar({categoryName,typeOfE,textFilter, dateRangeText, price}) {
         return categoryName || typeOfE || textFilter || dateRangeText || price;
     }
 
@@ -56,8 +56,12 @@ class Browse extends React.Component {
                     <FiltersForm/>
                 </div>
                 <div className="browse-page__events">
-                    {this.shouldDisplayFilterBar(this.props.filters) && <FiltersBar/>}
-                    {!this.shouldDisplayFilterBar(this.props.filters) && <div className="filter-fix"></div>}
+                    {Browse.shouldDisplayFilterBar(this.props.filters)
+                    ?
+                        <FiltersBar/>
+                    :
+                        <div className="filter-fix"></div>
+                    }
                     <div className="browse--page__events-container">
                         {LoadingOrElements(events, this.props.events.length)}
                     </div>

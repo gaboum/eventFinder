@@ -9,5 +9,7 @@
  * @returns {Array.<T>}
  */
 export const findEventById = (state, id) => {
-    return (state.events.events.filter(ev => ev.id === id) || state.events.filteredEvents.filter(ev => ev.id === id));
+    let event = state.events.filteredEvents.filter(ev => ev.id === id);
+    if(!event.length) event = state.events.events.filter(ev => ev.id === id);
+    return event;
 };

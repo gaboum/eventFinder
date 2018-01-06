@@ -29,7 +29,7 @@ class EventPage extends React.Component {
 
 
     /**
-     * Sets current venue to an empty object when uset leaves the page
+     * Sets current venue to an empty object when user leaves the page
      */
     componentWillUnmount() {
         this.props.resetVenue();
@@ -38,6 +38,7 @@ class EventPage extends React.Component {
 
 
     render() {
+        console.log(this.props.match.params.id)
         const { logo, name, is_free, description, start, end} = this.props.event[0];
         const {address_1, address_2, city, country, name : venue_name, latitude, longitude} = this.props.venue;
         const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${ENV.googleAPI.keyAPI}&v=3.exp&libraries=geometry,drawing,places`;
