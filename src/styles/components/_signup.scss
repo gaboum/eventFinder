@@ -10,7 +10,6 @@
 .signup-page__form {
   @include display-flex(center, true, column);
   height: 50vh;
-  flex: 0 1 40%;
   width: 30%;
 }
 
@@ -24,4 +23,20 @@
 
 .signup_button {
   margin-top: 2rem!important;
+}
+
+@include range-breakpoint(630px, 1025px) {
+  .signup-page__form {
+    width: 70%;
+  }
+}
+
+@include range-breakpoint(0px, 630px) {
+  .signup-page {
+    padding: .5rem;
+    margin: .5rem;
+  }
+  .signup-page__form {
+    width: 80%;
+  }
 }
