@@ -21,7 +21,7 @@ class HomePage extends React.Component {
      * Dispatches action which obtains nearby events
      */
     componentDidMount() {
-        this.props.getEvents(this.props.location)
+        this.props.getEvents(this.props.location);
     }
 
     /**

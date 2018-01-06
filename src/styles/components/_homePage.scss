@@ -62,6 +62,11 @@
   .homepage__slider {
     height: 40vh;
   }
+  .search-form {
+    input {
+      font-size: $m-size;
+    }
+  }
 }
 
 @include range-breakpoint(0px, 1200px) {
