@@ -29,7 +29,7 @@ class SignIn extends React.Component {
     render (){
         const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
-            <div className="signin-page">
+            <div className="signin-page container-fluid">
                 <form onSubmit={handleSubmit} className="signin-page__form">
                     <Field
                         className="form-control signin-page__input"
