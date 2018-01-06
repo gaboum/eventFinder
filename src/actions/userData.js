@@ -47,7 +47,10 @@ export const toggleNavbar = () => ({
 export const getUsersLocality = coord => dispatch => {
     let URL = `${ENV.googleAPI.rootURL}?latlng=${coord.latitude},${coord.longitude}&result_type=locality&key=${ENV.googleAPI.keyAPI}`;
     axios.get(URL)
-        .then(resp => dispatch({type : SET_USER_LOCALITY, locality: resp.data.results[0].formatted_address}))
+        .then(resp => {
+            console.log(resp);
+            dispatch({type : SET_USER_LOCALITY, locality: resp.data.results[0].formatted_address})
+        })
         .catch(err => dispatch(setError(err)));
 };
 

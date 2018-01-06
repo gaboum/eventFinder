@@ -8,6 +8,13 @@
   position: relative;
 }
 
+.homepage__greeting {
+  @include section(true, 5rem, 0rem);
+  @include border-bottom($grey);
+  margin-top: 10rem;
+  justify-content: center;
+}
+
 .homepage__slider {
   @include section(false, 0,0);
   position: relative;
@@ -34,7 +41,7 @@
 
 .homepage__events > span {
   @include section(true, 0, 0, $offwhite-background);
-  padding: 15% 9%;
+  padding: 2% 9%;
   min-height: 40vh;
 }
 
@@ -72,6 +79,30 @@
 @include range-breakpoint(0px, 1200px) {
   .homepage__events > span {
     padding: 4rem 1rem;
+  }
+}
+
+@include range-breakpoint(500px, 900px){
+  .homepage__greeting {
+    margin-top: 5rem;
+  }
+}
+
+@include range-breakpoint(450px, 700px){
+  .homepage__greeting h1 {
+    font-size: $xl-size;
+  }
+  .homepage__greeting {
+    margin: 4rem 2rem;
+  }
+}
+
+@include range-breakpoint($max:450px){
+  .homepage__greeting {
+    margin: 2rem 1rem;
+    h1 {
+      font-size: $l-size;
+    }
   }
 }
 

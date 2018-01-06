@@ -22,7 +22,6 @@ import LoadingOrElements from '../LoadingOrElements';
  */
 class Browse extends React.Component {
 
-
     /**
      * Starts an AJAX request to obtain filtered events in accordance with user's input
      * Gets events baised on user's location on initial loac
