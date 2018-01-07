@@ -46,9 +46,9 @@ export const toggleNavbar = () => ({
  */
 export const getUsersLocality = coord => dispatch => {
     let URL = `${ENV.googleAPI.rootURL}?latlng=${coord.latitude},${coord.longitude}&result_type=locality&key=${ENV.googleAPI.keyAPI}`;
-    axios.get(URL)
+    return axios.get(URL)
         .then(resp => {
-            console.log(resp);
+            //console.log(resp);
             dispatch({type : SET_USER_LOCALITY, locality: resp.data.results[0].formatted_address})
         })
         .catch(err => dispatch(setError(err)));
@@ -64,7 +64,7 @@ export const getUsersLocality = coord => dispatch => {
  * @param password
  */
 export const signUserIn = (email, password) => dispatch => {
-    axios.post(`${ENV.backendServer.rootUrl}/signin`, { email, password })
+    return axios.post(`${ENV.backendServer.rootUrl}/signin`, { email, password })
         .then(resp => {
             if(resp.status === 200) {
                 localStorage.setItem('token', resp.data.token);
@@ -98,7 +98,7 @@ export const signUserIn = (email, password) => dispatch => {
  * @param password
  */
 export const signUserUp = ({email, password}) => dispatch =>  {
-    axios.post(`${ENV.backendServer.rootUrl}/signup`, {email, password})
+    return axios.post(`${ENV.backendServer.rootUrl}/signup`, {email, password})
         .then(resp => {
             if(resp.status === 200) {
                 localStorage.setItem('token', resp.data.token);

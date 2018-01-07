@@ -78,6 +78,7 @@
     "jest": "^21.2.1",
     "jshint": "^2.9.5",
     "redux-mock-store": "^1.4.0",
+    "rest": "^2.0.0",
     "url-loader": "^0.6.2"
   }
 }
