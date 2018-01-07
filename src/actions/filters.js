@@ -28,7 +28,7 @@ const ROOT_URL = ENV.eventbriteAPI.rootURL;
  * Requests list of categories from eventbrite API and put them into the Redux store
  */
 export const getCategories = () => dispatch => {
-    axios.get(`${ROOT_URL}/categories/`, {headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+    return axios.get(`${ROOT_URL}/categories/`, {headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
         .then(resp =>  {
             //console.log(resp.data.categories);
             dispatch({
