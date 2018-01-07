@@ -26,11 +26,11 @@ const DateTimeSet = props => {
  * Validation of props
  * @type {{defaultDate, defaultTime, disabledDate}}
  */
-DateTimeSet.propTypes = {
+/*DateTimeSet.propTypes = {
     defaultDate  : PropTypes.instanceOf(moment).isRequired,
     defaultTime  : PropTypes.instanceOf(moment).isRequired,
     context      : PropTypes.string.isRequired,
-};
+};*/
 
 /**
  * Disables days in datepicker based on context from props (beginning of disabling)

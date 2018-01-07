@@ -14,7 +14,7 @@ import * as actions from '../actions/filters';
 /**
  * Represents filters form (on the Browse page)
  */
-class FiltersForm extends LinkedComponent {
+export class FiltersForm extends LinkedComponent {
 
     /**
      * This state is solely for controlling custom input
@@ -71,7 +71,7 @@ class FiltersForm extends LinkedComponent {
                         <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[0]})}>
                             {this.props.categories.map((category, i) => (
                                 <div
-                                    className="filterForm__control"
+                                    className="filterForm__control control-category"
                                     onClick={() => this.props.setCategory(category)}
                                     key={i}>
                                     {category.name}
@@ -84,7 +84,7 @@ class FiltersForm extends LinkedComponent {
                     <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[1]})}>
                         {this.filters.types.map((filter, i) => (
                             <div
-                                className="filterForm__control"
+                                className="filterForm__control control-type"
                                 onClick={() => this.props.setType(filter)}
                                 key={i}>
                                 {filter}
@@ -96,20 +96,20 @@ class FiltersForm extends LinkedComponent {
                     <div className="filterFrom__group" onClick={this.handleClick.bind(this,2)}>Price</div>
                     <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[2]})}>
                         {this.filters.prices.map((pr, i) => (
-                            <div key={i} className="filterForm__control" onClick={() => this.props.setPrice(pr)}>{pr}</div>
+                            <div key={i} className="filterForm__control control-price" onClick={() => this.props.setPrice(pr)}>{pr}</div>
                         ))}
                     </div>
                 </div>
                 <div className="filterForm__filter">
                     <div className="filterForm__group"  onClick={() => this.handleClick(3)}>Date</div>
                     <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[3]})}>
-                        <div className="filterForm__control" onClick={() => this.props.setToday()}>Today</div>
-                        <div className="filterForm__control" onClick={() => this.props.setTomorrow()}>Tomorrow</div>
-                        <div className="filterForm__control" onClick={() => this.props.setThisFriday()}>This Friday</div>
-                        <div className="filterForm__control" onClick={() => this.props.setThisWeek()}>This Week</div>
-                        <div className="filterForm__control" onClick={() => this.props.setThisWeekend()}>This Weekend</div>
-                        <div className="filterForm__control" onClick={() => this.props.setNextWeek()}>Next Week</div>
-                        <div className="filterForm__control" onClick={() => this.props.setThisMonth()}>This Month</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setToday()}>Today</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setTomorrow()}>Tomorrow</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setThisFriday()}>This Friday</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setThisWeek()}>This Week</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setThisWeekend()}>This Weekend</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setNextWeek()}>Next Week</div>
+                        <div className="filterForm__control control-time" onClick={() => this.props.setThisMonth()}>This Month</div>
                     </div>
                 </div>
             </div>

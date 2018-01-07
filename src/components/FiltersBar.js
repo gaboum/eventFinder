@@ -17,7 +17,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
  * @param props
  * @constructor
  */
-const FiltersBar = props => (
+export const FiltersBar = props => (
     <div className="filter-bar">
         <CSSTransitionGroup
             transitionName="filter"
