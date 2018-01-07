@@ -17,8 +17,7 @@ const ROOT_URL = ENV.eventbriteAPI.rootURL;
 export const getEvents = ({latitude, longitude}={}) => dispatch => {
     let URL = `${ROOT_URL}/events/search/`;
     URL += (latitude && longitude) ? `?location.latitude=${latitude}&location.longitude=${longitude}` : '';
-    console.log(URL)
-    axios.get(`${URL}`,
+    return axios.get(`${URL}`,
         {
             headers : {Authorization : ENV.eventbriteAPI.OAuthToken}
         }
@@ -56,10 +55,8 @@ export const getFilteredEvents = (props = {}) =>   {
         URL += startRange ? `start_date.range_start=${adjustTimestamps(startRange)}&` : '';
         URL += endRange   ? `start_date.range_end=${adjustTimestamps(endRange)}` : '';
 
-        //console.log(URL);
-        axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+        return axios.get(URL, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
             .then(resp => {
-                //console.log(resp);
                 dispatch({type : SET_FILTERED_EVENTS, events: resp.data.events})
             })
             .catch(err => console.log(err.response))
@@ -68,10 +65,9 @@ export const getFilteredEvents = (props = {}) =>   {
 
 /**
  * Saves a user's event to the database (not eventbrite, it's own database)
- * @param event
  */
 export const saveEvent = ({title, location, startDate, endDate,picture, description, organizerName}) => dispatch => {
-    axios.post(`${ENV.backendServer.rootUrl}/event-save`,
+    return axios.post(`${ENV.backendServer.rootUrl}/event-save`,
         {
             title : title.value,
             location : location.value,
@@ -85,9 +81,11 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
             headers : { Authorization : localStorage.getItem('token')}
         })
         .then(resp => {
+            //console.log(err);
             dispatch({type : SAVE_EVENT})
         })
         .catch(err => {
+            //console.log(err);
             dispatch(setError(err.response.data.errors))
         })
 };
@@ -98,9 +96,9 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
  * @param venueId
  */
 export const getVenue = venueId  => dispatch => {
-    axios.get(`${ROOT_URL}/venues/${venueId}/`, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
+    return axios.get(`${ROOT_URL}/venues/${venueId}/`, { headers : {Authorization : ENV.eventbriteAPI.OAuthToken}})
         .then(resp => dispatch({ type: SET_VENUE, venue: resp.data}))
-        .catch(err => console.warn(err.response))
+        .catch(err => console.warn('error on load venue'/*err.response*/))
 };
 
 
