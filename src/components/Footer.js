@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
 
-const Footer = () => (
+export const Footer = () => (
     <footer>
         <div className="footer__container">
             <ul className="footer__column">

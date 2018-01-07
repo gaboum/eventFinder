@@ -4,7 +4,7 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const Map = withScriptjs(withGoogleMap(props => {
+export const Map = withScriptjs(withGoogleMap(props => {
    const lat = parseFloat(props.latitude);
    const long = parseFloat(props.longitude);
    return (

@@ -12,7 +12,7 @@ import {CSSTransitionGroup} from 'react-transition-group';
  * @returns {XML}
  * @constructor
  */
-const LoadingOrElements = (elements, ready) => {
+export const LoadingOrElements = (elements, ready) => {
     if(!ready){
         return (
             <div className="lds-css ng-scope loading-icon">
