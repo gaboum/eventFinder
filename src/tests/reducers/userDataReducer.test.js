@@ -33,8 +33,7 @@ test('should set user\'s location', () => {
     const state = userDataReducer(defState, action);
     expect(state).toEqual({
         ...defState,
-        latitude : 123.2,
-        longitude : 23.39
+        location : {}
     })
 });
 
@@ -75,8 +74,8 @@ test('should sign user up', () => {
     expect(state).toEqual({
         ...defState,
         authenticated: true,
-        jwtToken : expect.any(String),
-        authErrors : ''
+        jwtToken : 'fkasdjfo2903urjdisf209ru20dijo283u9rw9eidh',
+        authError : ''
     })
 });
 
