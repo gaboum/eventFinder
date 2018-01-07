@@ -6,7 +6,7 @@ import { shallow, mount } from 'enzyme';
 import {FiltersForm} from '../../components/FiltersForm';
 
 
-let wrapper, getCategories, handleClick, setToday, setPrice, setType, setCategory;
+let wrapper, getCategories, handleClick, setToday, setPrice, setType, setCategory, setLocation;
 
 beforeEach(() => {
     getCategories = jest.fn();
@@ -15,6 +15,7 @@ beforeEach(() => {
     setPrice      = jest.fn();
     setType       = jest.fn();
     setCategory   = jest.fn();
+    setLocation   = jest.fn();
     wrapper = shallow(<FiltersForm
         userData={userDataReducerDefaultState}
         categories={['the first category', 'the second one']}
@@ -23,6 +24,7 @@ beforeEach(() => {
         setToday={setToday}
         setPrice={setPrice}
         setType={setType}
+        setLocation={setLocation}
         setCategory={setCategory}
     />)
 });
@@ -45,9 +47,17 @@ test('should call getCategories()', () => {
     expect(getCategories).toHaveBeenCalled();
 });
 
+test('should call setLocation with "Kemerovo', () => {
+    const e = {target:{value:'Kemerovo'}};
+    wrapper.find('.filterForm__text-input').simulate('blur', e);
+    expect(setLocation).toHaveBeenCalledWith('Kemerovo');
+});
+
+
 test('should set an active tab after clicking on a category div', () => {
     wrapper.find('.filterForm__group').at(0).simulate('click');
-    expect(wrapper.state('activeTab')[0]).toBe(true)
+    expect(wrapper.state('activeTab')[0]).toBe(true);
+    expect(wrapper.find('.test').hasClass('filterForm--active')).toBe(true);
 });
 
 test('should set an call setToday()', () => {

@@ -68,7 +68,7 @@ export class FiltersForm extends LinkedComponent {
                        onBlur={(e) => this.props.setLocation(e.target.value)}/>
                 <div className="filterForm__filter">
                     <div className="filterForm__group" onClick={this.handleClick.bind(this,0)}>Categories</div>
-                        <div className={classNames('filterForm__slide', {'filterForm--active' : this.state.activeTab[0]})}>
+                        <div className={classNames('filterForm__slide test', {'filterForm--active' : this.state.activeTab[0]})}>
                             {this.props.categories.map((category, i) => (
                                 <div
                                     className="filterForm__control control-category"

@@ -53,6 +53,7 @@ exports[`should render the FiltersForm component properly 1`] = `
             "getCategories": [Function],
             "handleClick": [Function],
             "setCategory": [Function],
+            "setLocation": [Function],
             "setPrice": [Function],
             "setToday": [Function],
             "setType": [Function],
@@ -89,6 +90,7 @@ exports[`should render the FiltersForm component properly 1`] = `
                 getCategories={[Function]}
                 handleClick={[Function]}
                 setCategory={[Function]}
+                setLocation={[Function]}
                 setPrice={[Function]}
                 setToday={[Function]}
                 setType={[Function]}
@@ -126,7 +128,7 @@ exports[`should render the FiltersForm component properly 1`] = `
                     Categories
                   </div>
                   <div
-                    className="filterForm__slide"
+                    className="filterForm__slide test"
                   >
                     <div
                       className="filterForm__control control-category"
@@ -327,7 +329,7 @@ exports[`should render the FiltersForm component properly 1`] = `
       Categories
     </div>
     <div
-      className="filterForm__slide"
+      className="filterForm__slide test"
     >
       <div
         className="filterForm__control control-category"
