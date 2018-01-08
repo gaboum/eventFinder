@@ -79,6 +79,7 @@
     "jshint": "^2.9.5",
     "redux-mock-store": "^1.4.0",
     "rest": "^2.0.0",
+    "sinon": "^4.1.4",
     "url-loader": "^0.6.2"
   }
 }

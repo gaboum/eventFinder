@@ -20,7 +20,7 @@ import LoadingOrElements from '../LoadingOrElements';
 /**
  * Represents the Browse page
  */
-class Browse extends React.Component {
+export class Browse extends React.Component {
 
     /**
      * Starts an AJAX request to obtain filtered events in accordance with user's input

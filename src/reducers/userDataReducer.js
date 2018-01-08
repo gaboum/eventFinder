@@ -12,7 +12,7 @@ import {
     CLICK_NAVBAR
 } from '../actions/types';
 
-const userDataReducerDefaultState = {
+export const userDataReducerDefaultState = {
     location : {},
     locality : '',
     authenticated : false,

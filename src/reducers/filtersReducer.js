@@ -20,7 +20,7 @@ import {
     REMOVE_FILTER
 } from '../actions/types';
 
-const filtersReducerDefaultState = {
+export const filtersReducerDefaultState = {
     allCategories : [],
     location      : '',
     category      : '',
