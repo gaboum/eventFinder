@@ -15,7 +15,7 @@ import Validator from '../../helpers/fieldValidator';
 /**
  * Represents create event page
  */
-class CreateForm extends React.Component{
+export class CreateForm extends React.Component{
     state = {
         touched : false,
         title : {
@@ -77,12 +77,12 @@ class CreateForm extends React.Component{
                 <form className="create-event__form" onSubmit={this.handleSubmit}>
                     <div className="create-event__fieldset">
                         <label htmlFor="title">Event Title</label>
-                        <Input name="title" type="text" onChange={(e) => this.setState({title:{value:e.target.value}})}/>
+                        <Input id="title" name="title" type="text" onChange={(e) => this.setState({title:{value:e.target.value}})}/>
                         {this.state.touched && this.state.title.error && <p className="error">{this.state.title.error}</p>}
                     </div>
                     <div className="create-event__fieldset">
                         <label htmlFor="location">Location</label>
-                        <Input name="location" type="text" onChange={e => {this.setState({location:{value:e.target.value}})}}/>
+                        <Input name="location" id="location" type="text" onChange={e => {this.setState({location:{value:e.target.value}})}}/>
                         {this.state.touched && this.state.location.error && <p className="error">{this.state.location.error}</p>}
                     </div>
                     <div className="create-event__fieldset create-event__fieldset--pickers">
@@ -90,6 +90,7 @@ class CreateForm extends React.Component{
                             <label htmlFor="start-date">Start Date</label>
                             <DateTimeSet
                                 onChange={e => {this.setState({startDate:{value:e.format('DD:MM:YYYY')}})}}
+                                id="startDate"
                                 name="start-date"
                                 context="today"
                                 defaultDate={moment()}
@@ -112,11 +113,12 @@ class CreateForm extends React.Component{
                         </div>
                     </div>
                     <div className="create-event__fieldset">
-                        <FileUpload name="picture"  onChange={e => {this.setState({picture : {value: e}})}}/>
+                        <FileUpload name="picture" id="picture"  onChange={e => {this.setState({picture : {value: e}})}}/>
                         {this.state.touched && this.state.picture.error && <p className="error">{this.state.picture.error}</p>}
                     </div>
                     <div className="create-event__fieldset">
                         <TextArea
+                            id="description"
                             onChange={e => {this.setState({description:{value:e.target.value}})}}
                             name="description"/>
                         {this.state.touched && this.state.description.error && <p className="error">{this.state.description.error}</p>}
@@ -124,6 +126,7 @@ class CreateForm extends React.Component{
                     <div className="create-event__fieldset">
                         <label htmlFor="title">Organizer Name</label>
                         <Input
+                            id="organizerName"
                             name="organizer_name"
                             type="text"
                             onChange={e => {this.setState({organizerName : {value:e.target.value}})}} />
