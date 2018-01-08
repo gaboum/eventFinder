@@ -23,11 +23,9 @@ export const getEvents = ({latitude, longitude}={}) => dispatch => {
         }
     )
         .then(response => {
-            //console.log(response.data.events);
             dispatch(setNearby(response.data.events));
         })
         .catch(error => {
-            // console.log(error.response.data.error_description);
             dispatch(setError(error.response.data.error_description));
         });
 };
@@ -81,11 +79,9 @@ export const saveEvent = ({title, location, startDate, endDate,picture, descript
             headers : { Authorization : localStorage.getItem('token')}
         })
         .then(resp => {
-            //console.log(err);
             dispatch({type : SAVE_EVENT})
         })
         .catch(err => {
-            //console.log(err);
             dispatch(setError(err.response.data.errors))
         })
 };

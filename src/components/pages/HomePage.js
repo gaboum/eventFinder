@@ -14,7 +14,7 @@ import img1 from '../../assets/img/ticket.jpg';
 
 
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
 
     /**
      * Dispatches getting event action after receiving user's location

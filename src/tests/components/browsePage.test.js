@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import {Browse} from '../../components/pages/Browse';
 import {userDataReducerDefaultState} from '../../reducers/userDataReducer';
 import {filtersReducerDefaultState} from '../../reducers/filtersReducer';
