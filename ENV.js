@@ -5,7 +5,7 @@
 /**
  * This file holds authentication data for requests to eventbrite API
  * As well as data for requests to google's API
- * You can obtain it by registering an app here: https://www.eventbrite.com/myaccount/apps/
+ * You can obtain it by registering an app 
  * */
 const ENV = {
     eventbriteAPI : {
