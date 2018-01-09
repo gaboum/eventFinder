@@ -13,7 +13,7 @@ validators, as well as better grasping on testing with Jest and enzyme
 ## Installation
 
 You need to clone repository, run npm install in the root and `server/server` directory. You also need to provide OAuthToken and client secret
-for EventBrite API (you can obtain them via registering an app [here](https://www.eventbrite.com/developer/v3/). In addition, you need to register
+for EventBrite API (you can obtain them via registering an app [here](https://www.eventbrite.com/developer/v3/)). In addition, you need to register
 an app in google developers and obtain an APIkey for getting user's location. You also need to provide url to you app (can be localhost). All 
 this data is kept in ENV.js, which resides in the root directory.
 
