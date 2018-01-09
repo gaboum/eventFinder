@@ -17,7 +17,8 @@
     "dev-server": "webpack-dev-server",
     "test": "jest --watchAll --config=jest.config.json",
     "start": "node server/server/index.js",
-    "heroku-postbuild": "npm install"
+    "heroku-postbuild": "npm install",
+    "postinstall": "npm install --prefix ./server/server"
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^2.1.0",
