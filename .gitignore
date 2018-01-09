@@ -1,8 +1,6 @@
-node_modules
-server/server/node_modules/**
+
 .idea/*
 environment
 ENV.js
 gist
-jsgist.js
 styling
