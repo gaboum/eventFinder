@@ -8,7 +8,7 @@ in the application db (not in eventBrite one) but cannot view it though (I'll pr
 ## Motivation
 
 I've build this app in attempt to better learn React and Redux, namely async actions, animations, form validation using Redux-form and custom
-validators, Sass, flexboxes as well as better grasping on testing with Jest and enzyme
+validators, Sass, flexboxes for layout as well as better grasping on testing with Jest and enzyme
 
 ## Installation
 
