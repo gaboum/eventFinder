@@ -26,6 +26,9 @@ module.exports = function (app) {
     app.get('/scripts/bundle.js', function (req, res) {
         res.sendFile(path.join(publicPath, '/scripts/bundle.js'))
     });
+    app.get('/scripts/assets/ticket.jpg', function (req, res) {
+        res.sendFile(path.join(publicPath, '/scripts/assets/ticket.jpg'))
+    });
     app.post('/signup', AuthController.signUp);
     app.post('/signin', requireSigninMiddleware, AuthController.signIn);
     app.post('/event-save', requireAuthMiddleware, EventsController.saveEvent);
