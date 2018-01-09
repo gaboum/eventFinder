@@ -18,7 +18,7 @@ const ENV = {
         keyAPI  : 'AIzaSyDw5fwsSljNsyfchlULrBM4g984oGq8onY',
     },
     backendServer : {
-        rootUrl : 'http://localhost:3030'
+        rootUrl : 'https://event-finder-turisap.herokuapp.com'
     }
 };
 
