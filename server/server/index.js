@@ -12,7 +12,7 @@ const cors = require('cors');
 const router = require('./router');
 
 // DB Setup
-mongoose.connect('mongodb://localhost:auth/eventfinder');
+mongoose.connect(process.env.MONGOLAB_URI ||'mongodb://localhost:auth/eventfinder');
 
 // App Setup
 app.use(morgan('combined'));
