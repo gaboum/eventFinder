@@ -15,9 +15,16 @@ const requireSigninMiddleware = passport.authenticate('local', {session : false}
 const publicPath = path.join(__dirname, '../..', 'public');
 
 
+
 module.exports = function (app) {
     app.get('/', function (req, res) {
         res.sendFile(path.join(publicPath, 'index.html'));
+    });
+    app.get('/scripts/styles.css', function (req, res) {
+        res.sendFile(path.join(publicPath, '/scripts/styles.css'))
+    });
+    app.get('/scripts/bundle.js', function (req, res) {
+        res.sendFile(path.join(publicPath, '/scripts/bundle.js'))
     });
     app.post('/signup', AuthController.signUp);
     app.post('/signin', requireSigninMiddleware, AuthController.signIn);
